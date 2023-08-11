@@ -34,15 +34,18 @@ func _physics_process(delta):
 	move_and_slide()
 	update_animation()
 	update_rotation()
-	print(jump_power)
+	print(bounce_power)
 func update_input():
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_vector("left", "right", "up", "down")
 func update_gravity(delta):
 	# lompat makin tinggi jika jalannya makin cepat
-	jump_power = clampf(jump_power + (speed * abs(direction.x)), 0, jump_velocity)
-	jump_power = clampf(jump_power - ((speed + friction)/2), 0, jump_velocity)
+	jump_power = clampf(jump_power + (speed * direction.x), -jump_velocity, jump_velocity)
+	if jump_power > 0:
+		jump_power = max(jump_power - ((speed + friction)/2), 0)
+	elif jump_power < 0:
+		jump_power = min(jump_power + ((speed + friction)/2), 0)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -67,17 +70,19 @@ func update_friction():
 	elif velocity.x < 0:
 		velocity.x = min(velocity.x + friction, 0);	
 func update_wall_bounce():
-	bounce_power = clampf(bounce_power + (speed * abs(direction.x)), 0, max_speed)
-	bounce_power = clampf(bounce_power - ((speed + friction)/2), 0, max_speed)
-	
+	bounce_power = clampf(bounce_power + (speed * direction.x), -max_speed, max_speed)
+	if bounce_power > 0:
+		bounce_power = max(bounce_power - ((speed + friction)/2), 0)
+	elif bounce_power < 0:
+		bounce_power = min(bounce_power + ((speed + friction)/2), 0)
 	if is_on_wall():
 		for i in range(get_slide_collision_count()):
 			var collision = get_slide_collision(i)
 			var collider = collision.get_collider()
 			if collider is StaticBody2D:
 				if not collider.get_collision_layer_value(2):
-					velocity.x = clampf(velocity.x + (bounce_power * bounciness * collision.get_normal().x),-max_bounce_speed,max_bounce_speed)
-					bounce_power = 0.0
+					velocity.x = clampf(velocity.x + (abs(bounce_power) * bounciness * collision.get_normal().x),-max_bounce_speed,max_bounce_speed)
+					bounce_power = bounce_power / 8
 					break
 func update_animation():
 	if direction.x != 0:
