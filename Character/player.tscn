@@ -5,9 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://n33p5xbiw6r5" path="res://Character/Animations/c_runjump_low.png" id="4_brfut"]
 [ext_resource type="Texture2D" uid="uid://5ki6rk8d363b" path="res://Character/Animations/c_run.png" id="4_pqref"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4w3lc"]
-radius = 5.0
-height = 36.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6n7f"]
+size = Vector2(10, 3)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rfyjc"]
 atlas = ExtResource("1_hifc7")
@@ -1519,12 +1518,13 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 0
 collision_mask = 15
 script = ExtResource("1_u7mm2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
-shape = SubResource("CapsuleShape2D_4w3lc")
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_l6n7f")
 one_way_collision = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
