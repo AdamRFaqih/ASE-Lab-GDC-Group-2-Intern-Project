@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvcbtjxj3lqj"]
+
+[ext_resource type="Script" path="res://scripts/test.gd" id="1_umdjg"]
+[ext_resource type="AudioStream" uid="uid://blp1o1de1cj27" path="res://8bit Dungeon Boss - Video Classica - Kevin MacLeod.ogg" id="2_jouky"]
+[ext_resource type="AudioStream" uid="uid://02dslykgml73" path="res://Vine Boom Sound Effect.wav" id="3_18e6f"]
+[ext_resource type="Texture2D" uid="uid://c50ffyj31weia" path="res://icon.svg" id="4_185ws"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_du0m8"]
+font_size = 32
+
+[node name="test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_umdjg")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_jouky")
+autoplay = true
+bus = &"Music"
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_18e6f")
+bus = &"SFX"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 512.0
+offset_top = 260.0
+offset_right = 640.0
+offset_bottom = 388.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("4_185ws")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 159.0
+offset_bottom = 63.0
+text = "ESC: Exit test scene
+ENTER: Play sfx"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 527.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "THIS IS A TEST SCENE
+NOT ACTUAL GAMEPLAY"
+label_settings = SubResource("LabelSettings_du0m8")
+horizontal_alignment = 1

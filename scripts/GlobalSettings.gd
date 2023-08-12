@@ -1,9 +1,11 @@
 extends Node
 
-func update_music_vol(value_percent):
-	var value_db = 10*log(value_percent/100)
-	AudioServer.set_bus_volume_db(1, value_db)
+#update background music volume and convert from value (in range of 0 to 2) to dB
+func update_music_volume(value):
+	var db = linear_to_db(value)
+	AudioServer.set_bus_volume_db(1, db)
 
-func update_sfx_vol(value_percent):
-	var value_db = 10*log(value_percent/100)
-	AudioServer.set_bus_volume_db(2, value_db)
+#update sound effects volume and convert from value (in range of 0 to 2) to dB
+func update_sfx_volume(value):
+	var db = linear_to_db(value)
+	AudioServer.set_bus_volume_db(2, db)

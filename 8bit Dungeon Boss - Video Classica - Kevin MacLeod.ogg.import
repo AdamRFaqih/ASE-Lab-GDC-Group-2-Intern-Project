@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://blp1o1de1cj27"
+path="res://.godot/imported/8bit Dungeon Boss - Video Classica - Kevin MacLeod.ogg-292bb9d8c048171db10fb730ff78c4e8.oggvorbisstr"
+
+[deps]
+
+source_file="res://8bit Dungeon Boss - Video Classica - Kevin MacLeod.ogg"
+dest_files=["res://.godot/imported/8bit Dungeon Boss - Video Classica - Kevin MacLeod.ogg-292bb9d8c048171db10fb730ff78c4e8.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
