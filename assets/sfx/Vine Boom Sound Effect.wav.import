@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://02dslykgml73"
-path="res://.godot/imported/Vine Boom Sound Effect.wav-7952dabff2404d8cd75c57bb0f681a97.sample"
+path="res://.godot/imported/Vine Boom Sound Effect.wav-077c139844830d3ab20b8d63a8f01808.sample"
 
 [deps]
 
-source_file="res://Vine Boom Sound Effect.wav"
-dest_files=["res://.godot/imported/Vine Boom Sound Effect.wav-7952dabff2404d8cd75c57bb0f681a97.sample"]
+source_file="res://assets/sfx/Vine Boom Sound Effect.wav"
+dest_files=["res://.godot/imported/Vine Boom Sound Effect.wav-077c139844830d3ab20b8d63a8f01808.sample"]
 
 [params]
 
