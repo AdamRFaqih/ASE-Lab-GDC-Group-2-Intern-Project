@@ -1,0 +1,107 @@
+[gd_scene load_steps=6 format=3 uid="uid://eobyo50qu16e"]
+
+[ext_resource type="Script" path="res://scripts/settings_menu.gd" id="1_6wxgo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w26wv"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_pwy4f"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_0aypj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eawhe"]
+font_size = 32
+
+[node name="SettingsMenu" type="Panel"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -123.0
+offset_right = 196.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6wxgo")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="SettingsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_w26wv")
+horizontal_alignment = 1
+
+[node name="MusicSettings" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Music" type="Label" parent="MarginContainer/VBoxContainer/MusicSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MUSIC"
+label_settings = SubResource("LabelSettings_pwy4f")
+
+[node name="MusicVal" type="Label" parent="MarginContainer/VBoxContainer/MusicSettings"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "50"
+label_settings = SubResource("LabelSettings_0aypj")
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MusicSettings"]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+max_value = 2.0
+step = 0.02
+value = 1.0
+
+[node name="SFXSettings" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SFX" type="Label" parent="MarginContainer/VBoxContainer/SFXSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SFX"
+label_settings = SubResource("LabelSettings_eawhe")
+
+[node name="SFXVal" type="Label" parent="MarginContainer/VBoxContainer/SFXSettings"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "50"
+label_settings = SubResource("LabelSettings_0aypj")
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SFXSettings"]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+max_value = 2.0
+step = 0.02
+value = 1.0
+
+[node name="SettingsCloseButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "CLOSE"
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MusicSettings/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/SFXSettings/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SettingsCloseButton" to="." method="_on_settings_close_button_pressed"]
