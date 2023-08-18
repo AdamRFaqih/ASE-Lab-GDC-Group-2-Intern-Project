@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var sprite_2d = $Sprite2D
-@onready var sfx = $SFX
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
