@@ -1,23 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://irwbfw81wkpp"]
+[gd_scene load_steps=5 format=3 uid="uid://irwbfw81wkpp"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_hxhad"]
-[ext_resource type="Script" path="res://scripts/settings_menu.gd" id="2_tvd6g"]
+[ext_resource type="PackedScene" uid="uid://d3rvnnn1gjswj" path="res://scenes/settings_menu.tscn" id="2_tcmps"]
+[ext_resource type="PackedScene" uid="uid://ww2twgxt741m" path="res://scenes/credits.tscn" id="3_8ndy0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kt6gl"]
 font_size = 72
 outline_size = 16
 outline_color = Color(0.179688, 0.179688, 0.179688, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_w26wv"]
-font_size = 50
-
-[sub_resource type="LabelSettings" id="LabelSettings_pwy4f"]
-font_size = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_0aypj"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_eawhe"]
-font_size = 32
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -45,9 +35,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -164.0
-offset_top = -147.0
+offset_top = -176.0
 offset_right = 164.0
-offset_bottom = 147.0
+offset_bottom = 176.0
 grow_horizontal = 2
 grow_vertical = 2
 dragger_visibility = 1
@@ -68,6 +58,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -27.0
+offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 7
@@ -89,103 +81,22 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "SETTINGS"
 
+[node name="CreditsButton" type="Button" parent="CanvasLayer/TitleMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "CREDITS"
+
 [node name="ExitButton" type="Button" parent="CanvasLayer/TitleMenu/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "EXIT"
 
-[node name="SettingsMenu" type="Panel" parent="CanvasLayer"]
+[node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("2_tcmps")]
+
+[node name="Credits" parent="CanvasLayer" instance=ExtResource("3_8ndy0")]
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -196.0
-offset_top = -123.0
-offset_right = 196.0
-offset_bottom = 123.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_tvd6g")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/SettingsMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 7
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 7
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SettingsMenu/MarginContainer"]
-layout_mode = 2
-
-[node name="SettingsLabel" type="Label" parent="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "SETTINGS"
-label_settings = SubResource("LabelSettings_w26wv")
-horizontal_alignment = 1
-
-[node name="MusicSettings" type="HBoxContainer" parent="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Music" type="Label" parent="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer/MusicSettings"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "MUSIC"
-label_settings = SubResource("LabelSettings_pwy4f")
-
-[node name="MusicVal" type="Label" parent="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer/MusicSettings"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "50"
-label_settings = SubResource("LabelSettings_0aypj")
-
-[node name="MusicSlider" type="HSlider" parent="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer/MusicSettings"]
-custom_minimum_size = Vector2(175, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-max_value = 2.0
-step = 0.02
-value = 1.0
-
-[node name="SFXSettings" type="HBoxContainer" parent="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="SFX" type="Label" parent="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer/SFXSettings"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "SFX"
-label_settings = SubResource("LabelSettings_eawhe")
-
-[node name="SFXVal" type="Label" parent="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer/SFXSettings"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "50"
-label_settings = SubResource("LabelSettings_0aypj")
-
-[node name="SFXSlider" type="HSlider" parent="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer/SFXSettings"]
-custom_minimum_size = Vector2(175, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-max_value = 2.0
-step = 0.02
-value = 1.0
-
-[node name="SettingsCloseButton" type="Button" parent="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "CLOSE"
 
 [connection signal="pressed" from="CanvasLayer/TitleMenu/Panel/MarginContainer/VBoxContainer/PlayGameButton" to="." method="_on_play_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TitleMenu/Panel/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TitleMenu/Panel/MarginContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TitleMenu/Panel/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="value_changed" from="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer/MusicSettings/MusicSlider" to="CanvasLayer/SettingsMenu" method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer/SFXSettings/SFXSlider" to="CanvasLayer/SettingsMenu" method="_on_sfx_slider_value_changed"]
-[connection signal="pressed" from="CanvasLayer/SettingsMenu/MarginContainer/VBoxContainer/SettingsCloseButton" to="CanvasLayer/SettingsMenu" method="_on_settings_close_button_pressed"]
