@@ -1,155 +1,217 @@
 [gd_scene load_steps=8 format=3 uid="uid://d1xquos2nj0a0"]
 
-[ext_resource type="Texture2D" uid="uid://68vner8fxu08" path="res://Environment/testscene.jpg" id="1_yu3pk"]
+[ext_resource type="Texture2D" uid="uid://bsb8lestoa2rk" path="res://Environment/background.jpg" id="1_x4cf1"]
 [ext_resource type="PackedScene" uid="uid://qgmcjic57mg8" path="res://Character/player.tscn" id="2_iff4e"]
+[ext_resource type="Texture2D" uid="uid://2qgxvlcc7xa7" path="res://Environment/platform.png" id="2_qdinu"]
 [ext_resource type="Texture2D" uid="uid://dbw7dwkbymtfu" path="res://Environment/testscene_mask.png" id="3_pcu5p"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fibwy"]
-size = Vector2(20, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnwtu"]
-size = Vector2(20, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hq5pq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djnyf"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fibwy"]
+size = Vector2(20, 1)
+
 [node name="DemoScene" type="Node2D"]
 position = Vector2(319, 271)
 scale = Vector2(2.00383, 2)
 
-[node name="Testscene" type="Sprite2D" parent="."]
-position = Vector2(194.128, 83)
-texture = ExtResource("1_yu3pk")
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(197.123, 83.5)
+texture = ExtResource("1_x4cf1")
 
-[node name="Platform5" type="StaticBody2D" parent="Testscene"]
-position = Vector2(9.98087, 85.5)
+[node name="Border" type="Node2D" parent="Background"]
+
+[node name="Floor" type="StaticBody2D" parent="Background/Border"]
+position = Vector2(1.12344, 158.5)
+scale = Vector2(28.081, 1)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Border/Floor"]
+shape = SubResource("RectangleShape2D_hq5pq")
+
+[node name="Wall2" type="StaticBody2D" parent="Background/Border"]
+position = Vector2(-260.493, -104.876)
+rotation = -1.5708
+scale = Vector2(26.591, 1)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Border/Wall2"]
+shape = SubResource("RectangleShape2D_djnyf")
+
+[node name="Wall" type="StaticBody2D" parent="Background/Border"]
+position = Vector2(268.163, -72.5172)
+rotation = -1.5708
+scale = Vector2(26.591, 1)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Border/Wall"]
+shape = SubResource("RectangleShape2D_djnyf")
+
+[node name="Platforms" type="Node2D" parent="Background"]
+
+[node name="Blue" type="StaticBody2D" parent="Background/Platforms"]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(6.9863, 85)
 scale = Vector2(4.89254, 0.759998)
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testscene/Platform5"]
-position = Vector2(5.34058e-05, -10.5263)
+[node name="Platform" type="Sprite2D" parent="Background/Platforms/Blue"]
+position = Vector2(-2.71, 21.5)
+scale = Vector2(0.084, 0.342)
+texture = ExtResource("2_qdinu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Platforms/Blue"]
 shape = SubResource("RectangleShape2D_fibwy")
 one_way_collision = true
 
-[node name="Platform6" type="StaticBody2D" parent="Testscene"]
-position = Vector2(163.188, 117)
-scale = Vector2(7.1083, 0.759998)
+[node name="Red2" type="StaticBody2D" parent="Background/Platforms"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(162.189, 114.5)
+scale = Vector2(4.89254, 0.759998)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Platform" type="Sprite2D" parent="Background/Platforms/Red2"]
+position = Vector2(-2.71, 21.5)
+scale = Vector2(0.084, 0.342)
+texture = ExtResource("2_qdinu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Platforms/Red2"]
+shape = SubResource("RectangleShape2D_fibwy")
+one_way_collision = true
+
+[node name="Blue3" type="StaticBody2D" parent="Background/Platforms"]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(-163.188, 108)
+scale = Vector2(4.89254, 0.759998)
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testscene/Platform6"]
-position = Vector2(0, -9.835)
-shape = SubResource("RectangleShape2D_jnwtu")
+[node name="Platform" type="Sprite2D" parent="Background/Platforms/Blue3"]
+position = Vector2(-2.71, 21.5)
+scale = Vector2(0.084, 0.342)
+texture = ExtResource("2_qdinu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Platforms/Blue3"]
+shape = SubResource("RectangleShape2D_fibwy")
 one_way_collision = true
 
-[node name="Platform7" type="StaticBody2D" parent="Testscene"]
-position = Vector2(166.182, -37)
-scale = Vector2(6.0104, 0.759998)
+[node name="Red4" type="StaticBody2D" parent="Background/Platforms"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-100.308, 18)
+scale = Vector2(4.89254, 0.759998)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Platform" type="Sprite2D" parent="Background/Platforms/Red4"]
+position = Vector2(-2.71, 21.5)
+scale = Vector2(0.084, 0.342)
+texture = ExtResource("2_qdinu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Platforms/Red4"]
+shape = SubResource("RectangleShape2D_fibwy")
+one_way_collision = true
+
+[node name="Blue5" type="StaticBody2D" parent="Background/Platforms"]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(116.776, 37.5)
+scale = Vector2(4.89254, 0.759998)
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testscene/Platform7"]
-position = Vector2(0, -9.835)
-shape = SubResource("RectangleShape2D_jnwtu")
+[node name="Platform" type="Sprite2D" parent="Background/Platforms/Blue5"]
+position = Vector2(-2.71, 21.5)
+scale = Vector2(0.084, 0.342)
+texture = ExtResource("2_qdinu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Platforms/Blue5"]
+shape = SubResource("RectangleShape2D_fibwy")
 one_way_collision = true
 
-[node name="Platform8" type="StaticBody2D" parent="Testscene"]
-position = Vector2(5.4895, -87.5)
-scale = Vector2(6.0104, 0.759998)
+[node name="Red6" type="StaticBody2D" parent="Background/Platforms"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(181.652, -20.5)
+scale = Vector2(4.89254, 0.759998)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Platform" type="Sprite2D" parent="Background/Platforms/Red6"]
+position = Vector2(-2.71, 21.5)
+scale = Vector2(0.084, 0.342)
+texture = ExtResource("2_qdinu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Platforms/Red6"]
+shape = SubResource("RectangleShape2D_fibwy")
+one_way_collision = true
+
+[node name="Blue7" type="StaticBody2D" parent="Background/Platforms"]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(35.4321, -11.5)
+scale = Vector2(4.89254, 0.759998)
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testscene/Platform8"]
-position = Vector2(0, -9.835)
-shape = SubResource("RectangleShape2D_jnwtu")
+[node name="Platform" type="Sprite2D" parent="Background/Platforms/Blue7"]
+position = Vector2(-2.71, 21.5)
+scale = Vector2(0.084, 0.342)
+texture = ExtResource("2_qdinu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Platforms/Blue7"]
+shape = SubResource("RectangleShape2D_fibwy")
 one_way_collision = true
 
-[node name="Platform9" type="StaticBody2D" parent="Testscene"]
-position = Vector2(-167.679, -34.5)
-scale = Vector2(5.39158, 0.759998)
+[node name="Red8" type="StaticBody2D" parent="Background/Platforms"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-171.172, -26.5)
+scale = Vector2(4.89254, 0.759998)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Platform" type="Sprite2D" parent="Background/Platforms/Red8"]
+position = Vector2(-2.71, 21.5)
+scale = Vector2(0.084, 0.342)
+texture = ExtResource("2_qdinu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Platforms/Red8"]
+shape = SubResource("RectangleShape2D_fibwy")
+one_way_collision = true
+
+[node name="Blue9" type="StaticBody2D" parent="Background/Platforms"]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(-34.4341, -73)
+scale = Vector2(4.89254, 0.759998)
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testscene/Platform9"]
-position = Vector2(0, -9.835)
-shape = SubResource("RectangleShape2D_jnwtu")
+[node name="Platform" type="Sprite2D" parent="Background/Platforms/Blue9"]
+position = Vector2(-2.71, 21.5)
+scale = Vector2(0.084, 0.342)
+texture = ExtResource("2_qdinu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Platforms/Blue9"]
+shape = SubResource("RectangleShape2D_fibwy")
 one_way_collision = true
 
-[node name="Platform10" type="StaticBody2D" parent="Testscene"]
-position = Vector2(20.4608, -26)
-scale = Vector2(3.8146, 0.759998)
-collision_layer = 2
+[node name="Red10" type="StaticBody2D" parent="Background/Platforms"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(110.289, -97.5)
+scale = Vector2(4.89254, 0.759998)
+collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testscene/Platform10"]
-position = Vector2(0, -9.835)
-shape = SubResource("RectangleShape2D_jnwtu")
+[node name="Platform" type="Sprite2D" parent="Background/Platforms/Red10"]
+position = Vector2(-2.71, 21.5)
+scale = Vector2(0.084, 0.342)
+texture = ExtResource("2_qdinu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Platforms/Red10"]
+shape = SubResource("RectangleShape2D_fibwy")
 one_way_collision = true
-
-[node name="Platform11" type="StaticBody2D" parent="Testscene"]
-position = Vector2(119.771, 25.5)
-scale = Vector2(5.49139, 0.759998)
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testscene/Platform11"]
-position = Vector2(0, -9.835)
-shape = SubResource("RectangleShape2D_jnwtu")
-one_way_collision = true
-
-[node name="Platform12" type="StaticBody2D" parent="Testscene"]
-position = Vector2(-154.205, 114.5)
-scale = Vector2(6.10453, 0.759998)
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testscene/Platform12"]
-position = Vector2(0, -9.835)
-shape = SubResource("RectangleShape2D_jnwtu")
-one_way_collision = true
-
-[node name="Platform13" type="StaticBody2D" parent="Testscene"]
-position = Vector2(-106.296, 30.5)
-scale = Vector2(4.6074, 0.559998)
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testscene/Platform13"]
-position = Vector2(0, -9.835)
-shape = SubResource("RectangleShape2D_jnwtu")
-one_way_collision = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Testscene"]
-position = Vector2(4.11801, 159)
-scale = Vector2(28.081, 1)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testscene/StaticBody2D"]
-shape = SubResource("RectangleShape2D_hq5pq")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="Testscene"]
-position = Vector2(-257.499, -104.376)
-rotation = -1.5708
-scale = Vector2(26.591, 1)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testscene/StaticBody2D2"]
-shape = SubResource("RectangleShape2D_djnyf")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="Testscene"]
-position = Vector2(271.158, -72.0172)
-rotation = -1.5708
-scale = Vector2(26.591, 1)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testscene/StaticBody2D3"]
-shape = SubResource("RectangleShape2D_djnyf")
 
 [node name="Player" parent="." instance=ExtResource("2_iff4e")]
 position = Vector2(87.8318, 140.5)
-collision_mask = 3
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
@@ -162,6 +224,17 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = -50.0
+offset_right = 285.0
+offset_bottom = -23.0
+grow_vertical = 0
+text = "PRESS SHIFT TO SWITCH COLOR"
 
 [node name="TestsceneMask" type="Sprite2D" parent="."]
 position = Vector2(194.128, 83)
