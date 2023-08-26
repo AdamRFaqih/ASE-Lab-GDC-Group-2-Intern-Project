@@ -1,0 +1,844 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgk2nuaaoq3gp"]
+
+[ext_resource type="Texture2D" uid="uid://4fy3hf7j5fqu" path="res://Environment/block_wall.jpg" id="3_1o7hb"]
+[ext_resource type="Texture2D" uid="uid://cl3srifpy0up8" path="res://Environment/block_start_platform.jpg" id="3_r35pm"]
+[ext_resource type="PackedScene" uid="uid://qgmcjic57mg8" path="res://Character/player.tscn" id="3_u2qcl"]
+[ext_resource type="Texture2D" uid="uid://cj761oprm5yop" path="res://Environment/block_platform.jpg" id="4_bnv7x"]
+[ext_resource type="Script" path="res://Content/Map.gd" id="5_6juep"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hy1pp"]
+size = Vector2(44, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fdxg"]
+size = Vector2(44, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yospw"]
+size = Vector2(176, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tv2a"]
+size = Vector2(16, 385)
+
+[node name="Default" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -26)
+zoom = Vector2(3.3, 3.3)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("player", "region_1", "region_2")]
+script = ExtResource("5_6juep")
+player = NodePath("../Player")
+region_1 = NodePath("../region_1")
+region_2 = NodePath("../region_2")
+
+[node name="region_1" type="Node2D" parent="."]
+
+[node name="platforms" type="Node2D" parent="region_1"]
+
+[node name="platform1" type="Node2D" parent="region_1/platforms"]
+position = Vector2(0, -35)
+
+[node name="a" type="StaticBody2D" parent="region_1/platforms/platform1"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform1/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform1/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_1/platforms/platform1"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform1/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform1/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform2" type="Node2D" parent="region_1/platforms"]
+position = Vector2(0, -70)
+
+[node name="a" type="StaticBody2D" parent="region_1/platforms/platform2"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform2/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform2/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_1/platforms/platform2"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform2/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform2/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform3" type="Node2D" parent="region_1/platforms"]
+position = Vector2(0, -105)
+
+[node name="a" type="StaticBody2D" parent="region_1/platforms/platform3"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform3/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform3/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_1/platforms/platform3"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform3/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform3/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform4" type="Node2D" parent="region_1/platforms"]
+position = Vector2(0, -140)
+
+[node name="a" type="StaticBody2D" parent="region_1/platforms/platform4"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform4/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform4/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_1/platforms/platform4"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform4/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform4/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform5" type="Node2D" parent="region_1/platforms"]
+position = Vector2(0, -175)
+
+[node name="a" type="StaticBody2D" parent="region_1/platforms/platform5"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform5/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform5/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_1/platforms/platform5"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform5/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform5/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform6" type="Node2D" parent="region_1/platforms"]
+position = Vector2(0, -210)
+
+[node name="a" type="StaticBody2D" parent="region_1/platforms/platform6"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform6/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform6/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_1/platforms/platform6"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform6/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform6/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform7" type="Node2D" parent="region_1/platforms"]
+position = Vector2(0, -245)
+
+[node name="a" type="StaticBody2D" parent="region_1/platforms/platform7"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform7/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform7/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_1/platforms/platform7"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform7/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform7/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform8" type="Node2D" parent="region_1/platforms"]
+position = Vector2(0, -280)
+
+[node name="a" type="StaticBody2D" parent="region_1/platforms/platform8"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform8/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform8/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_1/platforms/platform8"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform8/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform8/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform9" type="Node2D" parent="region_1/platforms"]
+position = Vector2(0, -315)
+
+[node name="a" type="StaticBody2D" parent="region_1/platforms/platform9"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform9/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform9/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_1/platforms/platform9"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform9/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform9/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform10" type="Node2D" parent="region_1/platforms"]
+position = Vector2(0, -350)
+
+[node name="a" type="StaticBody2D" parent="region_1/platforms/platform10"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform10/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform10/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_1/platforms/platform10"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/platforms/platform10/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/platforms/platform10/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="Start_Platform" type="StaticBody2D" parent="region_1"]
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/Start_Platform"]
+texture_repeat = 3
+texture = ExtResource("3_r35pm")
+region_enabled = true
+region_rect = Rect2(-1, 0, 176, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/Start_Platform"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_yospw")
+one_way_collision = true
+
+[node name="Left_Wall" type="StaticBody2D" parent="region_1"]
+position = Vector2(-96, -2)
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/Left_Wall"]
+texture_repeat = 3
+position = Vector2(0, -186)
+texture = ExtResource("3_1o7hb")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 385)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/Left_Wall"]
+position = Vector2(0, -186)
+shape = SubResource("RectangleShape2D_8tv2a")
+
+[node name="Right_Wall" type="StaticBody2D" parent="region_1"]
+position = Vector2(96, -2)
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_1/Right_Wall"]
+texture_repeat = 3
+position = Vector2(0, -186)
+texture = ExtResource("3_1o7hb")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 385)
+
+[node name="Collision" type="CollisionShape2D" parent="region_1/Right_Wall"]
+position = Vector2(0, -186)
+shape = SubResource("RectangleShape2D_8tv2a")
+
+[node name="region_2" type="Node2D" parent="."]
+position = Vector2(0, -385)
+
+[node name="platforms" type="Node2D" parent="region_2"]
+
+[node name="platform1" type="Node2D" parent="region_2/platforms"]
+position = Vector2(0, -35)
+
+[node name="a" type="StaticBody2D" parent="region_2/platforms/platform1"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform1/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform1/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_2/platforms/platform1"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform1/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform1/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform2" type="Node2D" parent="region_2/platforms"]
+position = Vector2(0, -70)
+
+[node name="a" type="StaticBody2D" parent="region_2/platforms/platform2"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform2/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform2/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_2/platforms/platform2"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform2/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform2/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform3" type="Node2D" parent="region_2/platforms"]
+position = Vector2(0, -105)
+
+[node name="a" type="StaticBody2D" parent="region_2/platforms/platform3"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform3/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform3/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_2/platforms/platform3"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform3/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform3/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform4" type="Node2D" parent="region_2/platforms"]
+position = Vector2(0, -140)
+
+[node name="a" type="StaticBody2D" parent="region_2/platforms/platform4"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform4/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform4/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_2/platforms/platform4"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform4/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform4/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform5" type="Node2D" parent="region_2/platforms"]
+position = Vector2(0, -175)
+
+[node name="a" type="StaticBody2D" parent="region_2/platforms/platform5"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform5/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform5/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_2/platforms/platform5"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform5/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform5/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform6" type="Node2D" parent="region_2/platforms"]
+position = Vector2(0, -210)
+
+[node name="a" type="StaticBody2D" parent="region_2/platforms/platform6"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform6/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform6/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_2/platforms/platform6"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform6/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform6/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform7" type="Node2D" parent="region_2/platforms"]
+position = Vector2(0, -245)
+
+[node name="a" type="StaticBody2D" parent="region_2/platforms/platform7"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform7/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform7/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_2/platforms/platform7"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform7/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform7/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform8" type="Node2D" parent="region_2/platforms"]
+position = Vector2(0, -280)
+
+[node name="a" type="StaticBody2D" parent="region_2/platforms/platform8"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform8/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform8/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_2/platforms/platform8"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform8/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform8/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform9" type="Node2D" parent="region_2/platforms"]
+position = Vector2(0, -315)
+
+[node name="a" type="StaticBody2D" parent="region_2/platforms/platform9"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform9/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform9/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_2/platforms/platform9"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform9/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform9/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform10" type="Node2D" parent="region_2/platforms"]
+position = Vector2(0, -350)
+
+[node name="a" type="StaticBody2D" parent="region_2/platforms/platform10"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform10/a"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform10/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="region_2/platforms/platform10"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/platforms/platform10/b"]
+texture_repeat = 3
+texture = ExtResource("4_bnv7x")
+region_enabled = true
+region_rect = Rect2(-1, 0, 44, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/platforms/platform10/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="Start_Platform" type="StaticBody2D" parent="region_2"]
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/Start_Platform"]
+texture_repeat = 3
+texture = ExtResource("3_r35pm")
+region_enabled = true
+region_rect = Rect2(-1, 0, 176, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/Start_Platform"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_yospw")
+one_way_collision = true
+
+[node name="Left_Wall" type="StaticBody2D" parent="region_2"]
+position = Vector2(-96, -2)
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/Left_Wall"]
+texture_repeat = 3
+position = Vector2(0, -186)
+texture = ExtResource("3_1o7hb")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 385)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/Left_Wall"]
+position = Vector2(0, -186)
+shape = SubResource("RectangleShape2D_8tv2a")
+
+[node name="Right_Wall" type="StaticBody2D" parent="region_2"]
+position = Vector2(96, -2)
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="region_2/Right_Wall"]
+texture_repeat = 3
+position = Vector2(0, -186)
+texture = ExtResource("3_1o7hb")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 385)
+
+[node name="Collision" type="CollisionShape2D" parent="region_2/Right_Wall"]
+position = Vector2(0, -186)
+shape = SubResource("RectangleShape2D_8tv2a")
+
+[node name="Player" parent="." instance=ExtResource("3_u2qcl")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -26)
+max_speed = 300.0
+friction_speed = 7.0
+max_bounce_speed = 450.0
+jump_velocity = 330.0
+run_to_jump_boost = 0.7
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")

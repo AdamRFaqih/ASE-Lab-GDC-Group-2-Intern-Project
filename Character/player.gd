@@ -20,6 +20,10 @@ var isJumping : bool = false
 var bounce_power : float = 0.0
 var jump_power : float = 0.0
 
+# TILEMAP SUPPORT
+const TILE_WALL = 0
+@export var tilemap : TileMap
+
 func _ready():
 	velocity = Vector2.ZERO
 	bounce_power = 0.0
@@ -82,7 +86,7 @@ func update_gravity(delta):
 		isJumping = false
 		friction = friction_speed # friction = gaya gesek
 func update_jump():
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_pressed("jump") and is_on_floor(): #is_action_pressed = hold space to auto jump
 		velocity.y = (jump_velocity + abs(jump_power * run_to_jump_boost)) * -1
 		jump_power = 0.0
 func update_movement():
@@ -99,6 +103,18 @@ func update_wall_bounce():
 		bounce_power = max(bounce_power - ((speed + friction)/2), 0)
 	elif bounce_power < 0:
 		bounce_power = min(bounce_power + ((speed + friction)/2), 0)
+	# wall bounce untuk tilemap
+	#if is_on_wall():
+	#	for i in range(get_slide_collision_count()):
+	#		var collision = get_slide_collision(i)
+	#		var tileCollisionPosition = collision.get_position()
+	#		tileCollisionPosition -= collision.get_normal()
+	#		var collider = tilemap.get_cell_source_id(TILE_WALL,tilemap.local_to_map(tileCollisionPosition))
+	#		if collider == 0: # 0 = true, -1 = false
+	#			velocity.x = clampf(velocity.x + (abs(bounce_power) * bounciness * collision.get_normal().x),-max_bounce_speed,max_bounce_speed)
+	#			bounce_power = bounce_power / 8
+	#			break
+	# wall bounce untuk non tilemap
 	if is_on_wall():
 		for i in range(get_slide_collision_count()):
 			var collision = get_slide_collision(i)
@@ -111,14 +127,14 @@ func update_wall_bounce():
 func update_animation():
 	if direction.x != 0:
 		if isJumping:
-			animated_sprite.play("run_to_jump_low")
+			animated_sprite.play("c_jump")
 		else:
-			animated_sprite.play("run")
+			animated_sprite.play("c_run")
 	else:
 		if isJumping:
-			animated_sprite.play("run_to_jump_low")
+			animated_sprite.play("c_jump")
 		else:
-			animated_sprite.play("idle")
+			animated_sprite.play("c_idle")
 func update_rotation():
 	if direction.x > 0:
 		animated_sprite.flip_h = false
