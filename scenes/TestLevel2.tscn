@@ -1,0 +1,335 @@
+[gd_scene load_steps=8 format=3 uid="uid://cyfklhg0l7pai"]
+
+[ext_resource type="Texture2D" uid="uid://c50ffyj31weia" path="res://icon.svg" id="1_b7ynh"]
+[ext_resource type="PackedScene" uid="uid://cph5ac4iotpv7" path="res://scenes/Player.tscn" id="2_m5sco"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="3_54h1n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxmpt"]
+size = Vector2(80, 8)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gopb6"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x82c7"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2crdh"]
+font_size = 18
+
+[node name="Node" type="Node"]
+
+[node name="TestLevel2" type="Node2D" parent="."]
+process_mode = 1
+
+[node name="Platforms" type="Node2D" parent="TestLevel2"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(160, 156)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(64, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D4"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(240, 108)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D5"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D5"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(136, 56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D6"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D6"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(248, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D7"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D7"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(136, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D2"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(40, -40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D8"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D8"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(216, -60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D9"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D9"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(112, -112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D10"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D10"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D11" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(224, -128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D11"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D11"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(184, -180)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D3"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D12" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(88, -208)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D12"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D12"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D13" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(264, -228)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D13"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D13"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D14" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(160, -280)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D14"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D14"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D15" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(256, -320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D15"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D15"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D16" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(136, -356)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D16"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D16"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D17" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(40, -384)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D17"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D17"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D18" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(216, -404)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D18"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D18"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D19" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(112, -456)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D19"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D19"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="StaticBody2D20" type="StaticBody2D" parent="TestLevel2/Platforms"]
+position = Vector2(224, -472)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Platforms/StaticBody2D20"]
+shape = SubResource("RectangleShape2D_mxmpt")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevel2/Platforms/StaticBody2D20"]
+scale = Vector2(0.625, 0.0625)
+texture = ExtResource("1_b7ynh")
+
+[node name="Borders" type="Node2D" parent="TestLevel2"]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="TestLevel2/Borders"]
+position = Vector2(0, 180)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Borders/StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_gopb6")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="TestLevel2/Borders"]
+position = Vector2(320, 180)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Borders/StaticBody2D3"]
+shape = SubResource("WorldBoundaryShape2D_x82c7")
+
+[node name="TestPlayer" parent="TestLevel2" instance=ExtResource("2_m5sco")]
+position = Vector2(160, 152)
+
+[node name="Camera2D" type="Camera2D" parent="TestLevel2/TestPlayer"]
+limit_left = 0
+limit_right = 320
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="UI" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_54h1n")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+
+[node name="GameOverScreen" type="ColorRect" parent="UI/CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.505
+anchor_top = 0.661
+anchor_right = 0.505
+anchor_bottom = 0.661
+offset_left = -41.6
+offset_top = -19.98
+offset_right = 38.4
+offset_bottom = 0.0199966
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RetryButton" type="Button" parent="UI/CanvasLayer/GameOverScreen/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+text = "RETRY"
+
+[node name="ExitButton" type="Button" parent="UI/CanvasLayer/GameOverScreen/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+text = "EXIT"
+
+[node name="Label" type="Label" parent="UI/CanvasLayer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -18.0
+offset_right = 56.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_2crdh")
+horizontal_alignment = 1
+
+[connection signal="die" from="TestLevel2/TestPlayer" to="UI" method="_on_test_player_die"]
+[connection signal="pressed" from="UI/CanvasLayer/GameOverScreen/HBoxContainer/RetryButton" to="UI" method="_on_retry_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/GameOverScreen/HBoxContainer/ExitButton" to="UI" method="_on_exit_button_pressed"]
