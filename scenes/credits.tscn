@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ww2twgxt741m"]
+[gd_scene load_steps=5 format=3 uid="uid://ww2twgxt741m"]
 
-[ext_resource type="Script" path="res://scenes/credits.gd" id="1_olefl"]
+[ext_resource type="Script" path="res://scripts/credits.gd" id="1_t47vt"]
+[ext_resource type="Texture2D" uid="uid://b88moweoqe62q" path="res://assets/draft-rpl-04_EDIT.png" id="2_ey8b4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_85jd3"]
 font_size = 50
@@ -15,12 +16,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -196.0
-offset_top = -159.0
+offset_top = -241.0
 offset_right = 196.0
-offset_bottom = 159.0
+offset_bottom = 241.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_olefl")
+script = ExtResource("1_t47vt")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -69,6 +70,18 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Baihaqi Bintang Bahana"
 horizontal_alignment = 1
+
+[node name="Header3" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Special Thanks to:"
+label_settings = SubResource("LabelSettings_rs5v4")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_ey8b4")
+stretch_mode = 3
 
 [node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
