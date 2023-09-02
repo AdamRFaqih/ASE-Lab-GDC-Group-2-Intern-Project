@@ -292,6 +292,7 @@ func update_score_and_player():
 				else:
 					randomize_color_region_1()
 					player_was_in_region_1 = true
+				print("aaa")
 				break
 func set_player_blue():
 	player.modulate = Color(0,1,1)

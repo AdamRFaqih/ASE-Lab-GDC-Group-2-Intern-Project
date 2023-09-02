@@ -1670,7 +1670,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 modulate = Color(0.772549, 0, 0, 1)
 collision_layer = 0
-collision_mask = 5
+collision_mask = 13
 script = ExtResource("1_u7mm2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
