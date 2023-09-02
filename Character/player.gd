@@ -30,29 +30,28 @@ func _ready():
 	jump_power = 0.0
 
 # EXPERIMENTAL
-var isBlue : bool = false
-var hasRequestBeenMet : bool = true
-func _input(event):
-	if Input.is_key_pressed(KEY_SHIFT) and event.is_pressed() and not event.is_echo():
-		if isBlue:
-			modulate = Color(1,0,0)
-			isBlue = false
-		else:
-			modulate = Color(0,1,1)
-			isBlue = true
-		hasRequestBeenMet = false
+#var isBlue : bool = false
+#var hasRequestBeenMet : bool = true
+#func _input(event):
+#	if Input.is_key_pressed(KEY_SHIFT) and event.is_pressed() and not event.is_echo():
+#		if isBlue:
+#			modulate = Color(1,0,0)
+#			isBlue = false
+#		else:
+#			modulate = Color(0,1,1)
+#			isBlue = true
+#		hasRequestBeenMet = false
 
 func _physics_process(delta):
-	if not hasRequestBeenMet:
-		if not is_on_floor():
-			hasRequestBeenMet = true
-			if isBlue:
-				set_collision_mask_value(2,true) # blue collision
-				set_collision_mask_value(3,false) # red collision
-			else:
-				set_collision_mask_value(2,false) # blue collision
-				set_collision_mask_value(3,true) # red collision
-
+#	if not hasRequestBeenMet:
+#		if not is_on_floor():
+#			hasRequestBeenMet = true
+#			if isBlue:
+#				set_collision_mask_value(2,true) # blue collision
+#				set_collision_mask_value(3,false) # red collision
+#			else:
+#				set_collision_mask_value(2,false) # blue collision
+#				set_collision_mask_value(3,true) # red collision
 	update_input()
 	update_gravity(delta)
 	update_jump()
@@ -140,5 +139,3 @@ func update_rotation():
 		animated_sprite.flip_h = false
 	elif direction.x < 0:
 		animated_sprite.flip_h = true
-
-

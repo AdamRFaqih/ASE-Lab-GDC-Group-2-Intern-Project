@@ -48,6 +48,11 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu/MarginContainer"]
 layout_mode = 2
 
+[node name="SCORE" type="Label" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SCORE:"
+horizontal_alignment = 1
+
 [node name="RestartButton" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Restart"
@@ -55,6 +60,20 @@ text = "Restart"
 [node name="MenuButton" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Menu"
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SCORE" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 679.0
+offset_right = 401.0
+offset_bottom = 705.0
+text = "SCORE:"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -26)
@@ -64,20 +83,21 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("player", "region_1", "region_2", "remote_transform_2d", "menu_ui")]
+[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("player", "region_1", "region_2", "remote_transform_2d", "debug_fog", "menu_ui", "score_text", "menu_score_text")]
 script = ExtResource("5_6juep")
 player = NodePath("../Player")
 region_1 = NodePath("region_1")
 region_2 = NodePath("region_2")
 remote_transform_2d = NodePath("../Player/RemoteTransform2D")
+debug_fog = NodePath("Sprite2D")
 menu_ui = NodePath("../CanvasLayer/Menu")
+score_text = NodePath("../CanvasLayer/Control/SCORE")
+menu_score_text = NodePath("../CanvasLayer/Menu/MarginContainer/VBoxContainer/SCORE")
 
-[node name="DEBUG_FOG" type="Node2D" parent="Map"]
+[node name="Sprite2D" type="Sprite2D" parent="Map"]
 visible = false
-
-[node name="BlockWall" type="Sprite2D" parent="Map/DEBUG_FOG"]
-modulate = Color(1, 1, 1, 0.545098)
-scale = Vector2(15.5711, 0.811995)
+position = Vector2(-1.5, 20)
+scale = Vector2(28.5625, 4.16667)
 texture = ExtResource("2_v34e7")
 
 [node name="region_1" type="Node2D" parent="Map"]
@@ -881,7 +901,7 @@ shape = SubResource("RectangleShape2D_8tv2a")
 modulate = Color(1, 0, 0, 1)
 position = Vector2(0, -26)
 max_speed = 300.0
-friction_speed = 7.0
+friction_speed = 10.0
 max_bounce_speed = 450.0
 jump_velocity = 330.0
 run_to_jump_boost = 0.7
