@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyfklhg0l7pai"]
+[gd_scene load_steps=9 format=3 uid="uid://cyfklhg0l7pai"]
 
 [ext_resource type="Texture2D" uid="uid://c50ffyj31weia" path="res://icon.svg" id="1_b7ynh"]
 [ext_resource type="PackedScene" uid="uid://cph5ac4iotpv7" path="res://scenes/Player.tscn" id="2_m5sco"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="3_54h1n"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="3_i4dny"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxmpt"]
 size = Vector2(80, 8)
@@ -14,7 +15,7 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2crdh"]
-font_size = 18
+font_size = 72
 
 [node name="Node" type="Node"]
 
@@ -22,6 +23,7 @@ font_size = 18
 process_mode = 1
 
 [node name="Platforms" type="Node2D" parent="TestLevel2"]
+scale = Vector2(3.75, 3.75)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TestLevel2/Platforms"]
 position = Vector2(160, 156)
@@ -252,17 +254,18 @@ position = Vector2(0, 180)
 shape = SubResource("WorldBoundaryShape2D_gopb6")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="TestLevel2/Borders"]
-position = Vector2(320, 180)
+position = Vector2(1152, 179)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel2/Borders/StaticBody2D3"]
 shape = SubResource("WorldBoundaryShape2D_x82c7")
 
 [node name="TestPlayer" parent="TestLevel2" instance=ExtResource("2_m5sco")]
 position = Vector2(160, 152)
+script = ExtResource("3_i4dny")
 
 [node name="Camera2D" type="Camera2D" parent="TestLevel2/TestPlayer"]
 limit_left = 0
-limit_right = 320
+limit_right = 1152
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
@@ -285,51 +288,48 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.196078)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer/GameOverScreen"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.505
-anchor_top = 0.661
-anchor_right = 0.505
-anchor_bottom = 0.661
-offset_left = -41.6
-offset_top = -19.98
-offset_right = 38.4
-offset_bottom = 0.0199966
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RetryButton" type="Button" parent="UI/CanvasLayer/GameOverScreen/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
-text = "RETRY"
-
-[node name="ExitButton" type="Button" parent="UI/CanvasLayer/GameOverScreen/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
-text = "EXIT"
-
-[node name="Label" type="Label" parent="UI/CanvasLayer/GameOverScreen"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CanvasLayer/GameOverScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.0
-offset_top = -18.0
-offset_right = 56.0
-offset_bottom = 8.0
+offset_left = -52.0
+offset_top = -26.5
+offset_right = 52.0
+offset_bottom = 26.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer"]
+layout_mode = 2
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_2crdh")
 horizontal_alignment = 1
 
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "RETRY"
+
+[node name="ColorRect" type="ColorRect" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ExitButton" type="Button" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "EXIT"
+
 [connection signal="die" from="TestLevel2/TestPlayer" to="UI" method="_on_test_player_die"]
-[connection signal="pressed" from="UI/CanvasLayer/GameOverScreen/HBoxContainer/RetryButton" to="UI" method="_on_retry_button_pressed"]
-[connection signal="pressed" from="UI/CanvasLayer/GameOverScreen/HBoxContainer/ExitButton" to="UI" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/GameOverScreen/VBoxContainer/HBoxContainer/RetryButton" to="UI" method="_on_retry_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/GameOverScreen/VBoxContainer/HBoxContainer/ExitButton" to="UI" method="_on_exit_button_pressed"]
