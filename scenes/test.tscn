@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvcbtjxj3lqj"]
+[gd_scene load_steps=6 format=3 uid="uid://bvcbtjxj3lqj"]
 
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_umdjg"]
 [ext_resource type="PackedScene" uid="uid://cwrautwk3cfcm" path="res://scenes/test_level.tscn" id="2_5yo5r"]
 [ext_resource type="AudioStream" uid="uid://blp1o1de1cj27" path="res://assets/music/8bit Dungeon Boss - Video Classica - Kevin MacLeod.ogg" id="3_givsi"]
 [ext_resource type="AudioStream" uid="uid://02dslykgml73" path="res://assets/sfx/Vine Boom Sound Effect.wav" id="4_kfgkw"]
-[ext_resource type="PackedScene" uid="uid://cht536a2qs83v" path="res://scenes/pause_screen.tscn" id="5_2s3ns"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_du0m8"]
 font_size = 32
@@ -14,6 +13,7 @@ process_mode = 3
 script = ExtResource("1_umdjg")
 
 [node name="TestLevel" parent="." instance=ExtResource("2_5yo5r")]
+process_mode = 0
 
 [node name="UI" type="Control" parent="."]
 process_mode = 3
@@ -40,7 +40,7 @@ offset_left = 11.0
 offset_top = 11.0
 offset_right = 159.0
 offset_bottom = 63.0
-text = "ESC: Pause
+text = "ESC: Back to Main Menu
 ENTER: Play sfx"
 metadata/_edit_use_anchors_ = true
 
@@ -51,9 +51,7 @@ anchor_bottom = 1.0
 offset_top = 584.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "THIS IS A TEST SCENE
+text = "THIS IS A DEBUG SCENE
 "
 label_settings = SubResource("LabelSettings_du0m8")
 horizontal_alignment = 1
-
-[node name="PauseScreen" parent="UI/CanvasLayer" instance=ExtResource("5_2s3ns")]

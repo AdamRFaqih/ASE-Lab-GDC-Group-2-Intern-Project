@@ -13,7 +13,7 @@ func _process(delta):
 	title_menu.visible = not (settings_menu.visible or credits.visible)
 
 func _on_play_game_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/test.tscn")
+	get_tree().change_scene_to_file("res://scenes/TestLevel2.tscn")
 
 func _on_settings_button_pressed():
 	settings_menu.visible = true

@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyfklhg0l7pai"]
+[gd_scene load_steps=10 format=3 uid="uid://dtoawae4ntkdt"]
 
 [ext_resource type="Texture2D" uid="uid://c50ffyj31weia" path="res://icon.svg" id="1_b7ynh"]
-[ext_resource type="PackedScene" uid="uid://cph5ac4iotpv7" path="res://scenes/Player.tscn" id="2_m5sco"]
-[ext_resource type="Script" path="res://scripts/UI.gd" id="3_54h1n"]
-[ext_resource type="Script" path="res://scenes/player.gd" id="3_i4dny"]
+[ext_resource type="PackedScene" uid="uid://cph5ac4iotpv7" path="res://scenes/player.tscn" id="2_m5sco"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="3_0t3dd"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="4_gfb4e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxmpt"]
 size = Vector2(80, 8)
@@ -13,6 +13,9 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x82c7"]
 normal = Vector2(-1, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i7pmi"]
+font_size = 72
 
 [sub_resource type="LabelSettings" id="LabelSettings_2crdh"]
 font_size = 72
@@ -260,8 +263,9 @@ position = Vector2(1152, 179)
 shape = SubResource("WorldBoundaryShape2D_x82c7")
 
 [node name="TestPlayer" parent="TestLevel2" instance=ExtResource("2_m5sco")]
-position = Vector2(160, 152)
-script = ExtResource("3_i4dny")
+position = Vector2(550, 324)
+scale = Vector2(5.01623, 4.97352)
+script = ExtResource("3_0t3dd")
 
 [node name="Camera2D" type="Camera2D" parent="TestLevel2/TestPlayer"]
 limit_left = 0
@@ -275,9 +279,107 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("3_54h1n")
+script = ExtResource("4_gfb4e")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+
+[node name="TestLevelLabel" type="Label" parent="UI/CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -640.0
+offset_right = 192.0
+offset_bottom = -538.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "TEST LEVEL"
+label_settings = SubResource("LabelSettings_i7pmi")
+
+[node name="LabelTimer" type="Timer" parent="UI/CanvasLayer/TestLevelLabel"]
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PauseButton" type="Button" parent="UI/CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+text = "PAUSE (esc)"
+
+[node name="Panel" type="Panel" parent="UI/CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="PauseScreen" type="ColorRect" parent="UI/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="Panel" type="Panel" parent="UI/CanvasLayer/PauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = -87.0
+offset_right = 167.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/CanvasLayer/PauseScreen/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CanvasLayer/PauseScreen/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "RESUME"
+
+[node name="ExitButton" type="Button" parent="UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "EXIT TO MAIN MENU"
 
 [node name="GameOverScreen" type="ColorRect" parent="UI/CanvasLayer"]
 visible = false
@@ -308,22 +410,32 @@ text = "GAME OVER"
 label_settings = SubResource("LabelSettings_2crdh")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer"]
+[node name="Panel" type="Panel" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer"]
+custom_minimum_size = Vector2(425, 65)
 layout_mode = 2
 
-[node name="RetryButton" type="Button" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.5
+offset_top = -25.0
+offset_right = 206.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RetryButton" type="Button" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
 text = "RETRY"
 
-[node name="ColorRect" type="ColorRect" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-color = Color(1, 1, 1, 0)
-
-[node name="ExitButton" type="Button" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer/HBoxContainer"]
+[node name="ExitButton" type="Button" parent="UI/CanvasLayer/GameOverScreen/VBoxContainer/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -331,5 +443,9 @@ theme_override_font_sizes/font_size = 30
 text = "EXIT"
 
 [connection signal="die" from="TestLevel2/TestPlayer" to="UI" method="_on_test_player_die"]
-[connection signal="pressed" from="UI/CanvasLayer/GameOverScreen/VBoxContainer/HBoxContainer/RetryButton" to="UI" method="_on_retry_button_pressed"]
-[connection signal="pressed" from="UI/CanvasLayer/GameOverScreen/VBoxContainer/HBoxContainer/ExitButton" to="UI" method="_on_exit_button_pressed"]
+[connection signal="timeout" from="UI/CanvasLayer/TestLevelLabel/LabelTimer" to="UI" method="_on_label_timer_timeout"]
+[connection signal="pressed" from="UI/CanvasLayer/MarginContainer/PauseButton" to="UI" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer/ResumeButton" to="UI" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer/ExitButton" to="UI" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/GameOverScreen/VBoxContainer/Panel/HBoxContainer/RetryButton" to="UI" method="_on_retry_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/GameOverScreen/VBoxContainer/Panel/HBoxContainer/ExitButton" to="UI" method="_on_exit_button_pressed"]

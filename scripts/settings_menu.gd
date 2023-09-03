@@ -15,7 +15,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if music_slider.value == 0:
+		music_val.text = "OFF"
+	if sfx_slider.value == 0:
+		sfx_val.text = "OFF"
 
 func _on_music_slider_value_changed(value):
 	music_val.text = str(value*50)
@@ -27,3 +30,6 @@ func _on_sfx_slider_value_changed(value):
 
 func _on_settings_close_button_pressed():
 	self.visible = false
+
+func _on_debug_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/test.tscn")
