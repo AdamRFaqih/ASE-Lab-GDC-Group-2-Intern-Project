@@ -76,26 +76,26 @@ offset_bottom = 705.0
 text = "SCORE:"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -26)
+position = Vector2(0, -24)
 zoom = Vector2(3.3, 3.3)
 process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("player", "region_1", "region_2", "remote_transform_2d", "debug_fog", "menu_ui", "score_text", "menu_score_text")]
+[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("player", "region_1", "region_2", "remote_transform_2d", "camera", "debug_fog", "menu_ui", "score_text", "menu_score_text")]
 script = ExtResource("5_6juep")
 player = NodePath("../Player")
 region_1 = NodePath("region_1")
 region_2 = NodePath("region_2")
 remote_transform_2d = NodePath("../Player/RemoteTransform2D")
+camera = NodePath("../Camera2D")
 debug_fog = NodePath("Sprite2D")
 menu_ui = NodePath("../CanvasLayer/Menu")
 score_text = NodePath("../CanvasLayer/Control/SCORE")
 menu_score_text = NodePath("../CanvasLayer/Menu/MarginContainer/VBoxContainer/SCORE")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map"]
-visible = false
 position = Vector2(-1.5, 20)
 scale = Vector2(28.5625, 4.16667)
 texture = ExtResource("2_v34e7")
@@ -903,12 +903,12 @@ shape = SubResource("RectangleShape2D_8tv2a")
 
 [node name="Player" parent="." instance=ExtResource("3_u2qcl")]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(0, -26)
-max_speed = 300.0
+position = Vector2(0, -24)
+max_speed = 150.0
 friction_speed = 10.0
-max_bounce_speed = 450.0
-jump_velocity = 330.0
-run_to_jump_boost = 0.7
+max_bounce_speed = 350.0
+jump_velocity = 350.0
+run_to_jump_boost = 1.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")

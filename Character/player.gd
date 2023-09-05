@@ -29,29 +29,7 @@ func _ready():
 	bounce_power = 0.0
 	jump_power = 0.0
 
-# EXPERIMENTAL
-#var isBlue : bool = false
-#var hasRequestBeenMet : bool = true
-#func _input(event):
-#	if Input.is_key_pressed(KEY_SHIFT) and event.is_pressed() and not event.is_echo():
-#		if isBlue:
-#			modulate = Color(1,0,0)
-#			isBlue = false
-#		else:
-#			modulate = Color(0,1,1)
-#			isBlue = true
-#		hasRequestBeenMet = false
-
 func _physics_process(delta):
-#	if not hasRequestBeenMet:
-#		if not is_on_floor():
-#			hasRequestBeenMet = true
-#			if isBlue:
-#				set_collision_mask_value(2,true) # blue collision
-#				set_collision_mask_value(3,false) # red collision
-#			else:
-#				set_collision_mask_value(2,false) # blue collision
-#				set_collision_mask_value(3,true) # red collision
 	update_input()
 	update_gravity(delta)
 	update_jump()
@@ -85,7 +63,7 @@ func update_gravity(delta):
 		isJumping = false
 		friction = friction_speed # friction = gaya gesek
 func update_jump():
-	if Input.is_action_pressed("jump") and is_on_floor(): #is_action_pressed = hold space to auto jump
+	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = (jump_velocity + abs(jump_power * run_to_jump_boost)) * -1
 		jump_power = 0.0
 func update_movement():
@@ -97,22 +75,12 @@ func update_friction():
 	elif velocity.x < 0:
 		velocity.x = min(velocity.x + friction, 0);	
 func update_wall_bounce():
-	bounce_power = clampf(bounce_power + (speed * direction.x), -max_speed, max_speed)
-	if bounce_power > 0:
-		bounce_power = max(bounce_power - ((speed + friction)/2), 0)
-	elif bounce_power < 0:
-		bounce_power = min(bounce_power + ((speed + friction)/2), 0)
-	# wall bounce untuk tilemap
-	#if is_on_wall():
-	#	for i in range(get_slide_collision_count()):
-	#		var collision = get_slide_collision(i)
-	#		var tileCollisionPosition = collision.get_position()
-	#		tileCollisionPosition -= collision.get_normal()
-	#		var collider = tilemap.get_cell_source_id(TILE_WALL,tilemap.local_to_map(tileCollisionPosition))
-	#		if collider == 0: # 0 = true, -1 = false
-	#			velocity.x = clampf(velocity.x + (abs(bounce_power) * bounciness * collision.get_normal().x),-max_bounce_speed,max_bounce_speed)
-	#			bounce_power = bounce_power / 8
-	#			break
+	if is_on_floor():
+		bounce_power = clampf(bounce_power + (speed * direction.x), -max_speed, max_speed)
+		if bounce_power > 0:
+			bounce_power = max(bounce_power - ((speed + friction)/2), 0)
+		elif bounce_power < 0:
+			bounce_power = min(bounce_power + ((speed + friction)/2), 0)
 	# wall bounce untuk non tilemap
 	if is_on_wall():
 		for i in range(get_slide_collision_count()):
@@ -121,7 +89,7 @@ func update_wall_bounce():
 			if collider is StaticBody2D:
 				if not collider.get_collision_layer_value(2):
 					velocity.x = clampf(velocity.x + (abs(bounce_power) * bounciness * collision.get_normal().x),-max_bounce_speed,max_bounce_speed)
-					bounce_power = bounce_power / 8
+					bounce_power = 0
 					break
 func update_animation():
 	if direction.x != 0:
