@@ -25,6 +25,8 @@ GlobalSettings="*res://scripts/GlobalSettings.gd"
 
 [display]
 
+window/size/viewport_width=1024
+window/size/viewport_height=720
 window/stretch/mode="viewport"
 
 [input]

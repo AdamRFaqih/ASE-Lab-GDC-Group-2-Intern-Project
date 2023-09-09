@@ -1,7 +1,7 @@
 extends Control
 
 @onready var game_over_screen = $CanvasLayer/GameOverScreen
-@onready var test_level_label = $CanvasLayer/TestLevelLabel
+@onready var test_panel = $CanvasLayer/TestPanel
 @onready var pause_screen = $CanvasLayer/PauseScreen
 
 # Called when the node enters the scene tree for the first time.
@@ -25,7 +25,7 @@ func _on_exit_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _on_label_timer_timeout():
-	test_level_label.hide()
+	test_panel.hide()
 
 func _on_pause_button_pressed():
 	get_tree().paused = true

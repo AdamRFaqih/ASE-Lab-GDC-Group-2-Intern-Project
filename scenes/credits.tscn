@@ -16,9 +16,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -196.0
-offset_top = -241.0
+offset_top = -330.0
 offset_right = 196.0
-offset_bottom = 241.0
+offset_bottom = 330.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t47vt")
@@ -40,13 +40,18 @@ layout_mode = 2
 
 [node name="CreditsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Credits"
+text = "CREDITS"
 label_settings = SubResource("LabelSettings_85jd3")
 horizontal_alignment = 1
 
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+color = Color(0.270588, 0.270588, 0.270588, 1)
+
 [node name="Header" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Game Design"
+text = "GAME DESIGNER"
 label_settings = SubResource("LabelSettings_rs5v4")
 horizontal_alignment = 1
 
@@ -55,9 +60,14 @@ layout_mode = 2
 text = "Fauzan Almas Saepullah"
 horizontal_alignment = 1
 
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0.270588, 0.270588, 0.270588, 1)
+
 [node name="Header2" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Game Programming"
+text = "GAME PROGRAMMERS"
 label_settings = SubResource("LabelSettings_rs5v4")
 horizontal_alignment = 1
 
@@ -71,9 +81,46 @@ layout_mode = 2
 text = "Baihaqi Bintang Bahana"
 horizontal_alignment = 1
 
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0.270588, 0.270588, 0.270588, 1)
+
+[node name="Header4" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "GAME ARTIST"
+label_settings = SubResource("LabelSettings_rs5v4")
+horizontal_alignment = 1
+
+[node name="Name5" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Ryannisa Syarifa T."
+horizontal_alignment = 1
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0.270588, 0.270588, 0.270588, 1)
+
+[node name="Header5" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "AUDIO COMPOSER"
+label_settings = SubResource("LabelSettings_rs5v4")
+horizontal_alignment = 1
+
+[node name="Name6" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Habli Zulvana Ath-Thaariq"
+horizontal_alignment = 1
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0.270588, 0.270588, 0.270588, 1)
+
 [node name="Header3" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Special Thanks to:"
+text = "SPECIAL THANKS:"
 label_settings = SubResource("LabelSettings_rs5v4")
 horizontal_alignment = 1
 
