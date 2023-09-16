@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgk2nuaaoq3gp"]
+[gd_scene load_steps=13 format=3 uid="uid://bgk2nuaaoq3gp"]
 
+[ext_resource type="Texture2D" uid="uid://ce0hhq0fledti" path="res://Content/Sprites/Environment/fire_platform.jpg" id="2_8mx7i"]
 [ext_resource type="Texture2D" uid="uid://dpakvklrd2h25" path="res://Environment/fog.jpg" id="2_v34e7"]
 [ext_resource type="Texture2D" uid="uid://4fy3hf7j5fqu" path="res://Environment/block_wall.jpg" id="3_1o7hb"]
-[ext_resource type="Texture2D" uid="uid://cl3srifpy0up8" path="res://Environment/block_start_platform.jpg" id="3_r35pm"]
+[ext_resource type="Texture2D" uid="uid://m67xosvoo187" path="res://Content/Sprites/Environment/ice_platform.jpg" id="3_pi2xo"]
 [ext_resource type="PackedScene" uid="uid://qgmcjic57mg8" path="res://Character/player.tscn" id="3_u2qcl"]
-[ext_resource type="Texture2D" uid="uid://cj761oprm5yop" path="res://Environment/block_platform.jpg" id="4_bnv7x"]
+[ext_resource type="Texture2D" uid="uid://dpkxespw65jw0" path="res://Content/Sprites/Environment/netral_stone_idle.png" id="5_2bbyj"]
 [ext_resource type="Script" path="res://Content/Map.gd" id="5_6juep"]
+[ext_resource type="AudioStream" uid="uid://bl282em5f4f7f" path="res://Content/Music/8bit_bgm..mp3" id="7_u8lyo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hy1pp"]
 size = Vector2(44, 2)
@@ -75,27 +77,40 @@ offset_right = 401.0
 offset_bottom = 705.0
 text = "SCORE:"
 
+[node name="MusicButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 715.0
+offset_right = 147.0
+offset_bottom = 746.0
+action_mode = 0
+text = "MUSIC ENABLED"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -24)
-zoom = Vector2(3.3, 3.3)
+zoom = Vector2(5, 5)
 process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("player", "region_1", "region_2", "remote_transform_2d", "camera", "debug_fog", "menu_ui", "score_text", "menu_score_text")]
+[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("player", "region_1", "region_2", "camera", "debug_fog", "menu_ui", "score_text", "menu_score_text", "music", "music_button")]
 script = ExtResource("5_6juep")
 player = NodePath("../Player")
 region_1 = NodePath("region_1")
 region_2 = NodePath("region_2")
-remote_transform_2d = NodePath("../Player/RemoteTransform2D")
 camera = NodePath("../Camera2D")
 debug_fog = NodePath("Sprite2D")
 menu_ui = NodePath("../CanvasLayer/Menu")
+fire_platform_texture = ExtResource("2_8mx7i")
+ice_platform_texture = ExtResource("3_pi2xo")
 score_text = NodePath("../CanvasLayer/Control/SCORE")
 menu_score_text = NodePath("../CanvasLayer/Menu/MarginContainer/VBoxContainer/SCORE")
+music = NodePath("../AudioStreamPlayer")
+music_button = NodePath("../CanvasLayer/Control/MusicButton")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map"]
+visible = false
 position = Vector2(-1.5, 20)
 scale = Vector2(28.5625, 4.16667)
 texture = ExtResource("2_v34e7")
@@ -114,9 +129,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform1/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform1/a"]
 position = Vector2(0, -2)
@@ -130,9 +145,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform1/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform1/b"]
 position = Vector2(0, -2)
@@ -149,9 +164,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform2/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform2/a"]
 position = Vector2(0, -2)
@@ -165,9 +180,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform2/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform2/b"]
 position = Vector2(0, -2)
@@ -184,9 +199,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform3/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform3/a"]
 position = Vector2(0, -2)
@@ -200,9 +215,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform3/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform3/b"]
 position = Vector2(0, -2)
@@ -219,9 +234,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform4/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform4/a"]
 position = Vector2(0, -2)
@@ -235,9 +250,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform4/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform4/b"]
 position = Vector2(0, -2)
@@ -254,9 +269,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform5/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform5/a"]
 position = Vector2(0, -2)
@@ -270,9 +285,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform5/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform5/b"]
 position = Vector2(0, -2)
@@ -289,9 +304,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform6/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform6/a"]
 position = Vector2(0, -2)
@@ -305,9 +320,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform6/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform6/b"]
 position = Vector2(0, -2)
@@ -324,9 +339,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform7/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform7/a"]
 position = Vector2(0, -2)
@@ -340,9 +355,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform7/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform7/b"]
 position = Vector2(0, -2)
@@ -359,9 +374,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform8/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform8/a"]
 position = Vector2(0, -2)
@@ -375,9 +390,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform8/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform8/b"]
 position = Vector2(0, -2)
@@ -394,9 +409,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform9/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform9/a"]
 position = Vector2(0, -2)
@@ -410,9 +425,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform9/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform9/b"]
 position = Vector2(0, -2)
@@ -429,9 +444,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform10/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform10/a"]
 position = Vector2(0, -2)
@@ -445,9 +460,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform10/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform10/b"]
 position = Vector2(0, -2)
@@ -459,7 +474,7 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_1/Start_Platform"]
 texture_repeat = 3
-texture = ExtResource("3_r35pm")
+texture = ExtResource("5_2bbyj")
 region_enabled = true
 region_rect = Rect2(-1, 0, 176, 7)
 
@@ -515,9 +530,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform1/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform1/a"]
 position = Vector2(0, -2)
@@ -531,9 +546,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform1/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform1/b"]
 position = Vector2(0, -2)
@@ -550,9 +565,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform2/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform2/a"]
 position = Vector2(0, -2)
@@ -566,9 +581,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform2/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform2/b"]
 position = Vector2(0, -2)
@@ -585,9 +600,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform3/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform3/a"]
 position = Vector2(0, -2)
@@ -601,9 +616,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform3/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform3/b"]
 position = Vector2(0, -2)
@@ -620,9 +635,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform4/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform4/a"]
 position = Vector2(0, -2)
@@ -636,9 +651,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform4/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform4/b"]
 position = Vector2(0, -2)
@@ -655,9 +670,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform5/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform5/a"]
 position = Vector2(0, -2)
@@ -671,9 +686,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform5/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform5/b"]
 position = Vector2(0, -2)
@@ -690,9 +705,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform6/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform6/a"]
 position = Vector2(0, -2)
@@ -706,9 +721,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform6/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform6/b"]
 position = Vector2(0, -2)
@@ -725,9 +740,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform7/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform7/a"]
 position = Vector2(0, -2)
@@ -741,9 +756,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform7/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform7/b"]
 position = Vector2(0, -2)
@@ -760,9 +775,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform8/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform8/a"]
 position = Vector2(0, -2)
@@ -776,9 +791,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform8/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform8/b"]
 position = Vector2(0, -2)
@@ -795,9 +810,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform9/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform9/a"]
 position = Vector2(0, -2)
@@ -811,9 +826,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform9/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform9/b"]
 position = Vector2(0, -2)
@@ -830,9 +845,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform10/a"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform10/a"]
 position = Vector2(0, -2)
@@ -846,9 +861,9 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform10/b"]
 texture_repeat = 3
-texture = ExtResource("4_bnv7x")
-region_enabled = true
-region_rect = Rect2(-1, 0, 44, 7)
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
 
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform10/b"]
 position = Vector2(0, -2)
@@ -860,7 +875,7 @@ collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Map/region_2/Start_Platform"]
 texture_repeat = 3
-texture = ExtResource("3_r35pm")
+texture = ExtResource("5_2bbyj")
 region_enabled = true
 region_rect = Rect2(-1, 0, 176, 7)
 
@@ -901,16 +916,18 @@ region_rect = Rect2(0, 0, 16, 385)
 position = Vector2(0, -186)
 shape = SubResource("RectangleShape2D_8tv2a")
 
-[node name="Player" parent="." instance=ExtResource("3_u2qcl")]
-modulate = Color(1, 0, 0, 1)
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_u2qcl")]
 position = Vector2(0, -24)
 max_speed = 150.0
 friction_speed = 10.0
 max_bounce_speed = 350.0
 jump_velocity = 350.0
 run_to_jump_boost = 1.0
+camera = NodePath("../Camera2D")
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Camera2D")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_u8lyo")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer/RestartButton" to="Map" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MusicButton" to="Map" method="_on_music_button_pressed"]

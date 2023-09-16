@@ -24,6 +24,13 @@ var jump_power : float = 0.0
 const TILE_WALL = 0
 @export var tilemap : TileMap
 
+# SPRITE CHANGING
+var is_red : bool = true
+
+# KAMERA
+@export var camera : Node2D
+@export var camera_follow_speed : float = 5
+
 func _ready():
 	velocity = Vector2.ZERO
 	bounce_power = 0.0
@@ -39,6 +46,7 @@ func _physics_process(delta):
 	move_and_slide()
 	update_animation()
 	update_rotation()
+	update_camera(delta)
 
 func update_input():
 	# Get the input direction and handle the movement/deceleration.
@@ -92,18 +100,35 @@ func update_wall_bounce():
 					bounce_power = 0
 					break
 func update_animation():
+	if not get_collision_mask_value(5):
+		is_red = get_collision_mask_value(3)
 	if direction.x != 0:
 		if isJumping:
-			animated_sprite.play("c_jump")
+			if is_red:
+				animated_sprite.play("fire_jump")
+			else:
+				animated_sprite.play("ice_jump")
 		else:
-			animated_sprite.play("c_run")
+			if is_red:
+				animated_sprite.play("fire_walk")
+			else:
+				animated_sprite.play("ice_walk")
 	else:
 		if isJumping:
-			animated_sprite.play("c_jump")
+			if is_red:
+				animated_sprite.play("fire_jump")
+			else:
+				animated_sprite.play("ice_jump")
 		else:
-			animated_sprite.play("c_idle")
+			if is_red:
+				animated_sprite.play("fire_idle")
+			else:
+				animated_sprite.play("ice_idle")
 func update_rotation():
 	if direction.x > 0:
 		animated_sprite.flip_h = false
 	elif direction.x < 0:
 		animated_sprite.flip_h = true
+func update_camera(delta):
+	if get_collision_mask_value(3) or get_collision_mask_value(2):
+		camera.position.y = lerpf(camera.global_position.y,global_position.y,camera_follow_speed*delta)

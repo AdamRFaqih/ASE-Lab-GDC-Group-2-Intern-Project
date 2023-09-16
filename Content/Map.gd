@@ -5,11 +5,9 @@ extends Node2D
 @export var region_2 : Node2D
 @export var minimumYDistance : float = 192.5
 @export var platformRepeatDistance : float = -35
-@export var remote_transform_2d : RemoteTransform2D
 @export var camera : Camera2D
 @export var debug_fog : Node2D
 @export var menu_ui : Control
-
 var target_y_position : float = 0
 var target_y_position_in_region_1 : bool = false
 
@@ -23,6 +21,9 @@ var has_platform_below : bool = true
 var platform_time : Array[int]
 var platforms : Array[StaticBody2D]
 
+# Sprite Platform Changing Mechanic
+@export var fire_platform_texture : CompressedTexture2D
+@export var ice_platform_texture : CompressedTexture2D
 
 # UI Mechanic
 var game_ended : bool = false
@@ -32,6 +33,10 @@ var last_y_position : float = 0
 var current_score : int = 0
 @export var score_text : Label
 @export var menu_score_text : Label
+
+# MUSIC & SOUND
+@export var music : AudioStreamPlayer
+@export var music_button : Button
 
 # Player Sprite Changing Mechanic
 var last_sprite_change_position : float = -385
@@ -48,7 +53,7 @@ func _ready():
 	randomize_region_2()
 	menu_ui.visible = false
 	last_y_position = 0
-	last_sprite_change_position = -390
+	last_sprite_change_position = -385
 	next_region_2 = true
 	current_score = 0
 	has_platform_below = true
@@ -88,7 +93,6 @@ func _process(delta):
 		fog_anchor_position = fog_anchor_position - (minimumYDistance)
 		hasStarted = true
 	if player.global_position.y < last_sprite_change_position and player.is_on_floor():
-		last_sprite_change_position = last_sprite_change_position - 385 #nilai 390 diatur sesuai lokasi end point nya
 		var r = randi_range(1,100)
 		if r > 50:
 			set_player_red()
@@ -100,6 +104,7 @@ func _process(delta):
 		else:
 			next_region_2 = true
 			randomize_color_region_1()
+		last_sprite_change_position = last_sprite_change_position - 385 #nilai 390 diatur sesuai lokasi end point nya
 	if hasStarted:
 		fog_position -= 0.5
 		update_platforms()
@@ -128,24 +133,30 @@ func randomize_region_1():
 		child.modulate.a = 1
 		var a = child.get_child(0) as StaticBody2D
 		var b = child.get_child(1) as StaticBody2D
+		var sprite_a = a.get_child(0) as Sprite2D
+		var sprite_b = b.get_child(0) as Sprite2D
 		a.position.y = 0
 		b.position.y = 0
 		var start_color = randi_range(0,100)
 		if start_color % 2 == 0:
-			a.modulate = Color(0,1,1)
+			#a.modulate = Color(0,1,1)
+			sprite_a.texture = ice_platform_texture
 			a.set_collision_layer_value(2,true)
 			a.set_collision_layer_value(3,false)
 			a.position.x = randi_range(22,66)
-			b.modulate = Color(1,0,0)
+			#b.modulate = Color(1,0,0)
+			sprite_b.texture = fire_platform_texture
 			b.set_collision_layer_value(2,false)
 			b.set_collision_layer_value(3,true)
 			b.position.x = randi_range(-66,-22)
 		else:
-			a.modulate = Color(1,0,0)
+			#a.modulate = Color(1,0,0)
+			sprite_a.texture = fire_platform_texture
 			a.set_collision_layer_value(2,false)
 			a.set_collision_layer_value(3,true)
 			a.position.x = randi_range(22,66)
-			b.modulate = Color(0,1,1)
+			#b.modulate = Color(0,1,1)
+			sprite_b.texture = ice_platform_texture
 			b.set_collision_layer_value(2,true)
 			b.set_collision_layer_value(3,false)
 			b.position.x = randi_range(-66,-22)		
@@ -161,24 +172,30 @@ func randomize_region_2():
 		child.modulate.a = 1
 		var a = child.get_child(0) as StaticBody2D
 		var b = child.get_child(1) as StaticBody2D
+		var sprite_a = a.get_child(0) as Sprite2D
+		var sprite_b = b.get_child(0) as Sprite2D
 		a.position.y = 0
 		b.position.y = 0
 		var start_color = randi_range(0,100)
 		if start_color % 2 == 0:
-			a.modulate = Color(0,1,1)
+			#a.modulate = Color(0,1,1)
+			sprite_a.texture = ice_platform_texture
 			a.set_collision_layer_value(2,true)
 			a.set_collision_layer_value(3,false)
 			a.position.x = randi_range(22,66)
-			b.modulate = Color(1,0,0)
+			#b.modulate = Color(1,0,0)
+			sprite_b.texture = fire_platform_texture
 			b.set_collision_layer_value(2,false)
 			b.set_collision_layer_value(3,true)
 			b.position.x = randi_range(-66,-22)
 		else:
-			a.modulate = Color(1,0,0)
+			#a.modulate = Color(1,0,0)
+			sprite_a.texture = fire_platform_texture
 			a.set_collision_layer_value(2,false)
 			a.set_collision_layer_value(3,true)
 			a.position.x = randi_range(22,66)
-			b.modulate = Color(0,1,1)
+			#b.modulate = Color(0,1,1)
+			sprite_b.texture = ice_platform_texture
 			b.set_collision_layer_value(2,true)
 			b.set_collision_layer_value(3,false)
 			b.position.x = randi_range(-66,-22)
@@ -189,19 +206,24 @@ func randomize_color_region_1():
 		child.modulate.a = 1
 		var a = child.get_child(0) as StaticBody2D
 		var b = child.get_child(1) as StaticBody2D
-		var start_color = randi_range(0,100)
-		if start_color % 2 == 0:
-			a.modulate = Color(0,1,1)
+		var sprite_a = a.get_child(0) as Sprite2D
+		var sprite_b = b.get_child(0) as Sprite2D
+		if a.modulate.r > 0:
+			#a.modulate = Color(0,1,1)
+			sprite_a.texture = ice_platform_texture
 			a.set_collision_layer_value(2,true)
 			a.set_collision_layer_value(3,false)
-			b.modulate = Color(1,0,0)
+			#b.modulate = Color(1,0,0)
+			sprite_b.texture = fire_platform_texture
 			b.set_collision_layer_value(2,false)
 			b.set_collision_layer_value(3,true)
 		else:
-			a.modulate = Color(1,0,0)
+			#a.modulate = Color(1,0,0)
+			sprite_a.texture = fire_platform_texture
 			a.set_collision_layer_value(2,false)
 			a.set_collision_layer_value(3,true)
-			b.modulate = Color(0,1,1)
+			#b.modulate = Color(0,1,1)
+			sprite_b.texture = ice_platform_texture
 			b.set_collision_layer_value(2,true)
 			b.set_collision_layer_value(3,false)	
 func randomize_color_region_2():
@@ -211,19 +233,24 @@ func randomize_color_region_2():
 		child.modulate.a = 1
 		var a = child.get_child(0) as StaticBody2D
 		var b = child.get_child(1) as StaticBody2D
-		var start_color = randi_range(0,100)
-		if start_color % 2 == 0:
-			a.modulate = Color(0,1,1)
+		var sprite_a = a.get_child(0) as Sprite2D
+		var sprite_b = b.get_child(0) as Sprite2D
+		if a.modulate.r > 0:
+			#a.modulate = Color(0,1,1)
+			sprite_a.texture = ice_platform_texture
 			a.set_collision_layer_value(2,true)
 			a.set_collision_layer_value(3,false)
-			b.modulate = Color(1,0,0)
+			#b.modulate = Color(1,0,0)
+			sprite_b.texture = fire_platform_texture
 			b.set_collision_layer_value(2,false)
 			b.set_collision_layer_value(3,true)
 		else:
-			a.modulate = Color(1,0,0)
+			#a.modulate = Color(1,0,0)
+			sprite_a.texture = fire_platform_texture
 			a.set_collision_layer_value(2,false)
 			a.set_collision_layer_value(3,true)
-			b.modulate = Color(0,1,1)
+			#b.modulate = Color(0,1,1)
+			sprite_b.texture = ice_platform_texture
 			b.set_collision_layer_value(2,true)
 			b.set_collision_layer_value(3,false)
 func update_platforms():
@@ -260,9 +287,9 @@ func update_platforms():
 			platforms[i].modulate.a = 1
 			
 func end_game():
-	remote_transform_2d.update_position = false
-	remote_transform_2d.update_rotation = false
-	remote_transform_2d.update_scale = false
+	player.set_collision_mask_value(2,false) #fix this karena nnti sprite char berubah ketika kalah
+	player.set_collision_mask_value(3,false)
+	player.set_collision_mask_value(5,true) # flag for ending game
 	fog_position -= 1
 	if abs(camera.global_position.y-player.global_position.y) > 125:
 		player.set_process(false)
@@ -285,12 +312,10 @@ func _on_restart_button_pressed():
 	randomize_region_1()
 	randomize_region_2()
 	game_ended = false
-	remote_transform_2d.update_position = true
-	remote_transform_2d.update_rotation = true
-	remote_transform_2d.update_scale = true
 	player.set_process(true)
 	player.set_physics_process(true)
 	player.global_position = Vector2(0,-26)
+	camera.global_position = Vector2(0,-26)
 	player.velocity = Vector2.ZERO
 	menu_ui.visible = false
 	last_y_position = 0
@@ -304,8 +329,9 @@ func _on_restart_button_pressed():
 	set_player_red()
 	fog_position = 10
 	has_platform_below = true
-	last_sprite_change_position = -390
+	last_sprite_change_position = -385
 	next_region_2 = true
+	player.set_collision_mask_value(5,false)
 	
 func update_score_and_player():
 	var distance = abs(last_y_position-player.global_position.y)
@@ -314,10 +340,18 @@ func update_score_and_player():
 		score_text.text = "SCORE: " + str(current_score)
 		last_y_position = player.global_position.y
 func set_player_blue():
-	player.modulate = Color(0,1,1)
 	player.set_collision_mask_value(2,true) # blue collision
 	player.set_collision_mask_value(3,false) # red collision
 func set_player_red():
-	player.modulate = Color(1,0,0)
 	player.set_collision_mask_value(2,false) # blue collision
 	player.set_collision_mask_value(3,true) # red collision
+
+
+func _on_music_button_pressed():
+	if music.playing:
+		music.stop()
+		music_button.text = "MUSIC DISABLED"
+	else:
+		music.play()
+		music_button.text = "MUSIC ENABLED"
+	music_button.release_focus()
