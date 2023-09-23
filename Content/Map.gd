@@ -88,11 +88,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if game_ended:
-		if camera.global_position.y >= -26:
+		if abs(camera.global_position.y + 26) < 5:
 			game_ended = false
 			player.set_collision_mask_value(5,false)
-		else:
-			camera.global_position = Vector2(0,-26)
+		camera.global_position = Vector2(0,-26)
 		return
 	if player.global_position.y < target_y_position:
 		randomize_map()
@@ -102,11 +101,10 @@ func _process(delta):
 		fog_anchor_position = fog_anchor_position - (minimumYDistance)
 		hasStarted = true
 	if player.global_position.y < last_sprite_change_position and player.is_on_floor():
-		var r = randi_range(1,100)
-		if r > 50:
-			set_player_red()
-		else:
+		if player.get_collision_mask_value(3):
 			set_player_blue()
+		else:
+			set_player_red()
 		if next_region_2:
 			next_region_2 = false
 			randomize_color_region_2()
