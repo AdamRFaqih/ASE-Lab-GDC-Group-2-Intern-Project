@@ -42,6 +42,9 @@ var current_score : int = 0
 var last_sprite_change_position : float = -385
 var next_region_2 : bool = true
 
+# Camera
+@export var camera_follow_speed : float = 5
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	target_y_position = minimumYDistance * -3
@@ -81,9 +84,15 @@ func _ready():
 		platform_time.append(0)
 		platforms.append(a)
 		platforms.append(b)
+	game_ended = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if game_ended:
+		if camera.global_position.y >= -26:
+			game_ended = false
+			player.set_collision_mask_value(5,false)
+		else:
+			camera.global_position = Vector2(0,-26)
 		return
 	if player.global_position.y < target_y_position:
 		randomize_map()
@@ -311,11 +320,9 @@ func _on_restart_button_pressed():
 	region_2.position = Vector2(0,-385)
 	randomize_region_1()
 	randomize_region_2()
-	game_ended = false
 	player.set_process(true)
 	player.set_physics_process(true)
 	player.global_position = Vector2(0,-26)
-	camera.global_position = Vector2(0,-26)
 	player.velocity = Vector2.ZERO
 	menu_ui.visible = false
 	last_y_position = 0
@@ -331,7 +338,6 @@ func _on_restart_button_pressed():
 	has_platform_below = true
 	last_sprite_change_position = -385
 	next_region_2 = true
-	player.set_collision_mask_value(5,false)
 	for i in range(len(platforms)):
 		platforms[i].modulate.a = 1
 	
@@ -347,7 +353,6 @@ func set_player_blue():
 func set_player_red():
 	player.set_collision_mask_value(2,false) # blue collision
 	player.set_collision_mask_value(3,true) # red collision
-
 
 func _on_music_button_pressed():
 	if music.playing:

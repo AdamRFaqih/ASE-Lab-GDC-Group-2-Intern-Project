@@ -130,5 +130,5 @@ func update_rotation():
 	elif direction.x < 0:
 		animated_sprite.flip_h = true
 func update_camera(delta):
-	if get_collision_mask_value(3) or get_collision_mask_value(2):
+	if (get_collision_mask_value(3) or get_collision_mask_value(2)) and not get_collision_mask_value(5):
 		camera.position.y = lerpf(camera.global_position.y,global_position.y,camera_follow_speed*delta)
