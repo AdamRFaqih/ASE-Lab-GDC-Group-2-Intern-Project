@@ -332,6 +332,8 @@ func _on_restart_button_pressed():
 	last_sprite_change_position = -385
 	next_region_2 = true
 	player.set_collision_mask_value(5,false)
+	for i in range(len(platforms)):
+		platforms[i].modulate.a = 1
 	
 func update_score_and_player():
 	var distance = abs(last_y_position-player.global_position.y)
