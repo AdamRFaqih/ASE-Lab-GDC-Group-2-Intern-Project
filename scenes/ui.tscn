@@ -1,12 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://br3wbvyaiphhs"]
+[gd_scene load_steps=6 format=3 uid="uid://br3wbvyaiphhs"]
 
+[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://resources/default_theme.tres" id="1_58538"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_subdx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i7pmi"]
-font_size = 72
+font_size = 36
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2srvn"]
+font_size = 10
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2crdh"]
-font_size = 72
+font_size = 40
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
 
 [node name="UI" type="Control"]
 process_mode = 3
@@ -14,6 +27,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("1_58538")
 script = ExtResource("1_subdx")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -27,6 +41,7 @@ offset_top = 20.0
 offset_right = 201.0
 offset_bottom = 92.0
 grow_horizontal = 2
+theme = ExtResource("1_58538")
 
 [node name="TestLevelLabel" type="Label" parent="CanvasLayer/TestPanel"]
 layout_mode = 1
@@ -35,6 +50,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_58538")
 text = "TEST LEVEL"
 label_settings = SubResource("LabelSettings_i7pmi")
 horizontal_alignment = 1
@@ -51,6 +67,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_58538")
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -66,13 +83,15 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 focus_mode = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "PAUSE"
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="AltPauseLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "or press [Esc]"
+text = "or press [ESCAPE]"
+label_settings = SubResource("LabelSettings_2srvn")
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
@@ -86,6 +105,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_58538")
 color = Color(0, 0, 0, 0.196078)
 
 [node name="Panel" type="Panel" parent="CanvasLayer/PauseScreen"]
@@ -95,10 +115,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -167.0
-offset_top = -87.0
-offset_right = 167.0
-offset_bottom = 87.0
+offset_left = -208.0
+offset_top = -88.0
+offset_right = 208.0
+offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -109,10 +129,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
+theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseScreen/Panel/MarginContainer"]
 layout_mode = 2
@@ -125,13 +145,13 @@ horizontal_alignment = 1
 
 [node name="ResumeButton" type="Button" parent="CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "RESUME"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "EXIT TO MAIN MENU"
+theme_override_font_sizes/font_size = 24
+text = "EXIT"
 
 [node name="GameOverScreen" type="ColorRect" parent="CanvasLayer"]
 visible = false
@@ -140,63 +160,56 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_58538")
 color = Color(0, 0, 0, 0.196078)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverScreen"]
+[node name="Panel" type="Panel" parent="CanvasLayer/GameOverScreen"]
+custom_minimum_size = Vector2(425, 65)
+layout_mode = 2
+offset_left = 300.0
+offset_top = 267.0
+offset_right = 725.0
+offset_bottom = 458.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GameOverScreen/Panel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -52.0
-offset_top = -26.5
-offset_right = 52.0
-offset_bottom = 26.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="CanvasLayer/GameOverScreen/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverScreen/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_2crdh")
 horizontal_alignment = 1
+autowrap_mode = 2
 
-[node name="Panel" type="Panel" parent="CanvasLayer/GameOverScreen/VBoxContainer"]
-custom_minimum_size = Vector2(425, 65)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameOverScreen/VBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -206.5
-offset_top = -25.0
-offset_right = 206.5
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RetryButton" type="Button" parent="CanvasLayer/GameOverScreen/VBoxContainer/Panel/HBoxContainer"]
+[node name="RetryButton" type="Button" parent="CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 24
 text = "RETRY"
 
-[node name="ExitButton" type="Button" parent="CanvasLayer/GameOverScreen/VBoxContainer/Panel/HBoxContainer"]
+[node name="ExitButton" type="Button" parent="CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 24
 text = "EXIT"
 
 [connection signal="timeout" from="CanvasLayer/TestPanel/TestLevelLabel/LabelTimer" to="." method="_on_label_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/GameOverScreen/VBoxContainer/Panel/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/GameOverScreen/VBoxContainer/Panel/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -1,13 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://irwbfw81wkpp"]
+[gd_scene load_steps=7 format=3 uid="uid://irwbfw81wkpp"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_hxhad"]
-[ext_resource type="PackedScene" uid="uid://d3rvnnn1gjswj" path="res://scenes/settings_menu.tscn" id="2_tcmps"]
-[ext_resource type="PackedScene" uid="uid://ww2twgxt741m" path="res://scenes/credits.tscn" id="3_8ndy0"]
+[ext_resource type="FontFile" uid="uid://cn51ttesv7cdn" path="res://assets/fonts/8bit_wonder/8-BIT WONDER.TTF" id="2_swq1e"]
+[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://resources/default_theme.tres" id="3_phot3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kt6gl"]
-font_size = 72
+font = ExtResource("2_swq1e")
+font_size = 48
+font_color = Color(0.5, 0.5, 0.5, 1)
 outline_size = 16
 outline_color = Color(0.179688, 0.179688, 0.179688, 1)
+shadow_size = 7
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(7, 7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m8o40"]
+font = ExtResource("2_swq1e")
+font_size = 48
+font_color = Color(0, 0.498039, 1, 1)
+outline_size = 16
+outline_color = Color(0.179688, 0.179688, 0.179688, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hgl1f"]
+font = ExtResource("2_swq1e")
+font_size = 48
+font_color = Color(1, 0.498039, 0, 1)
+outline_size = 16
+outline_color = Color(0.179688, 0.179688, 0.179688, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(5, 5)
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -35,9 +60,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -207.0
-offset_top = -176.0
+offset_top = -144.0
 offset_right = 207.0
-offset_bottom = 176.0
+offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
 dragger_visibility = 1
@@ -50,8 +75,47 @@ label_settings = SubResource("LabelSettings_kt6gl")
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="Title2" type="Label" parent="CanvasLayer/TitleMenu/Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 81.0
+offset_top = -25.5
+offset_right = 207.0
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+text = "UP"
+label_settings = SubResource("LabelSettings_m8o40")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Title3" type="Label" parent="CanvasLayer/TitleMenu/Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -25.5
+offset_right = -81.0
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+text = "UP"
+label_settings = SubResource("LabelSettings_hgl1f")
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Panel" type="Panel" parent="CanvasLayer/TitleMenu"]
 layout_mode = 2
+theme = ExtResource("3_phot3")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TitleMenu/Panel"]
 layout_mode = 1
@@ -64,8 +128,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 7
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TitleMenu/Panel/MarginContainer"]
 layout_mode = 2
@@ -73,28 +137,23 @@ alignment = 1
 
 [node name="PlayGameButton" type="Button" parent="CanvasLayer/TitleMenu/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 30
 text = "PLAY GAME"
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/TitleMenu/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "SETTINGS"
 
 [node name="CreditsButton" type="Button" parent="CanvasLayer/TitleMenu/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "CREDITS"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/TitleMenu/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "EXIT"
-
-[node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("2_tcmps")]
-
-[node name="Credits" parent="CanvasLayer" instance=ExtResource("3_8ndy0")]
-visible = false
 
 [connection signal="pressed" from="CanvasLayer/TitleMenu/Panel/MarginContainer/VBoxContainer/PlayGameButton" to="." method="_on_play_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TitleMenu/Panel/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

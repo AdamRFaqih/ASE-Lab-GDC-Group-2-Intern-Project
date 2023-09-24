@@ -1,37 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3rvnnn1gjswj"]
+[gd_scene load_steps=6 format=3 uid="uid://d3rvnnn1gjswj"]
 
-[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://resources/default_theme.tres" id="1_wht65"]
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="1_xyenw"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_rbtmi"]
-font_size = 32
-shadow_size = 3
-shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(3, 3)
+[sub_resource type="LabelSettings" id="LabelSettings_w26wv"]
+font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_pwy4f"]
-font_size = 18
-shadow_size = 3
-shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(3, 3)
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_0aypj"]
-font_size = 10
-shadow_size = 3
-shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(3, 3)
 
 [sub_resource type="LabelSettings" id="LabelSettings_eawhe"]
-font_size = 18
-shadow_size = 3
-shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(3, 3)
-
-[sub_resource type="LabelSettings" id="LabelSettings_jmqjr"]
-font_size = 10
-shadow_size = 3
-shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(3, 3)
+font_size = 32
 
 [node name="SettingsMenu" type="Panel"]
 anchors_preset = 8
@@ -40,12 +20,11 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -196.0
-offset_top = -148.0
+offset_top = -176.0
 offset_right = 196.0
-offset_bottom = 148.0
+offset_bottom = 176.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_wht65")
 script = ExtResource("1_xyenw")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -57,8 +36,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -66,7 +45,7 @@ layout_mode = 2
 [node name="SettingsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "SETTINGS"
-label_settings = SubResource("LabelSettings_rbtmi")
+label_settings = SubResource("LabelSettings_w26wv")
 horizontal_alignment = 1
 
 [node name="MusicSettings" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -129,23 +108,22 @@ label_settings = SubResource("LabelSettings_eawhe")
 [node name="FullscreenVal" type="Label" parent="MarginContainer/VBoxContainer/FullscreenSettings"]
 layout_mode = 2
 text = "OFF"
-label_settings = SubResource("LabelSettings_jmqjr")
 
 [node name="FullscreenButton" type="CheckButton" parent="MarginContainer/VBoxContainer/FullscreenSettings"]
 layout_mode = 2
 
-[node name="ControlsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="DebugButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "CONTROLS"
+theme_override_font_sizes/font_size = 32
+text = "[DEBUG]"
 
 [node name="SettingsCloseButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "CLOSE"
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MusicSettings/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/SFXSettings/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/FullscreenSettings/FullscreenButton" to="." method="_on_check_button_toggled"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/DebugButton" to="." method="_on_debug_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/SettingsCloseButton" to="." method="_on_settings_close_button_pressed"]
