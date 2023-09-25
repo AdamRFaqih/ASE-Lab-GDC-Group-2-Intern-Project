@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://bgk2nuaaoq3gp"]
 
-[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://resources/default_theme.tres" id="1_d8r44"]
+[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://scenes/default_theme.tres" id="1_d8r44"]
 [ext_resource type="Texture2D" uid="uid://ce0hhq0fledti" path="res://Content/Sprites/Environment/fire_platform.jpg" id="2_8mx7i"]
 [ext_resource type="Texture2D" uid="uid://dpakvklrd2h25" path="res://Environment/fog.jpg" id="2_v34e7"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="2_xhjg1"]
@@ -1158,9 +1158,9 @@ run_to_jump_boost = 1.0
 camera = NodePath("../Camera2D")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("7_u8lyo")
 autoplay = true
-bus = &"Music"
 
 [connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer/RestartButton" to="Map" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Return" to="Map" method="_on_restart_button_pressed"]

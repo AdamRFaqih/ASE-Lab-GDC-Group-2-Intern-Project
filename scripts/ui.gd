@@ -14,7 +14,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and not game_over_screen.visible:
 		get_tree().paused = not get_tree().paused
 	pause_screen.visible = get_tree().paused and not game_over_screen.visible
 

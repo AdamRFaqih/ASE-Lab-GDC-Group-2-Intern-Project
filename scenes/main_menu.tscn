@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_hxhad"]
 [ext_resource type="FontFile" uid="uid://cn51ttesv7cdn" path="res://assets/fonts/8bit_wonder/8-BIT WONDER.TTF" id="2_swq1e"]
-[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://resources/default_theme.tres" id="3_phot3"]
+[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://scenes/default_theme.tres" id="3_phot3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kt6gl"]
 font = ExtResource("2_swq1e")
