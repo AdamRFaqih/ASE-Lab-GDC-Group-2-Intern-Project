@@ -4,6 +4,7 @@ var current_score: int
 
 #update background music volume and convert from value (in range of 0 to 2) to dB
 func set_music_volume(value):
+	print(value)
 	var db = linear_to_db(value)
 	AudioServer.set_bus_volume_db(1, db)
 

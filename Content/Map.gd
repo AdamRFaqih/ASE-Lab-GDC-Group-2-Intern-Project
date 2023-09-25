@@ -121,6 +121,7 @@ func _process(delta):
 		end_game()
 	debug_fog.global_position.y = fog_position
 	update_score_and_player()
+
 func randomize_map():
 	if target_y_position_in_region_1:
 		region_2.global_position.y -= minimumYDistance*4
@@ -370,6 +371,8 @@ func end_game():
 		score_text.visible = false
 		#GlobalSettings.store_score(current_score)
 		menu_score_text.text = "SCORE: " + str(current_score)
+		music.stop()
+		SfxAutoload.play_sfx(SfxAutoload.GAME_OVER)
 
 func update_score_and_player():
 	var distance = abs(last_y_position-player.global_position.y)
@@ -385,11 +388,12 @@ func set_player_red():
 	player.set_collision_mask_value(3,true) # red collision
 
 func _on_music_button_pressed():
-	if music.playing:
-		music.stop()
-		music_button.text = "MUSIC DISABLED"
-	else:
-		music.play()
-		music_button.text = "MUSIC ENABLED"
-	music_button.release_focus()
+	pass
+	#if music.playing:
+	#	music.stop()
+	#	music_button.text = "MUSIC DISABLED"
+	#else:
+	#	music.play()
+	#	music_button.text = "MUSIC ENABLED"
+	#music_button.release_focus()
 

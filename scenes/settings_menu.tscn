@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://d3rvnnn1gjswj"]
 
-[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://resources/default_theme.tres" id="1_wht65"]
+[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://scenes/default_theme.tres" id="1_wht65"]
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="1_xyenw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rbtmi"]

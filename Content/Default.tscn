@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bgk2nuaaoq3gp"]
+[gd_scene load_steps=30 format=3 uid="uid://bgk2nuaaoq3gp"]
 
 [ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://scenes/default_theme.tres" id="1_d8r44"]
 [ext_resource type="Texture2D" uid="uid://ce0hhq0fledti" path="res://Content/Sprites/Environment/fire_platform.jpg" id="2_8mx7i"]
@@ -8,8 +8,10 @@
 [ext_resource type="FontFile" uid="uid://b7t121aftjds2" path="res://assets/fonts/8_bit_pusab/8-bit-pusab.ttf" id="3_8tgnf"]
 [ext_resource type="Texture2D" uid="uid://m67xosvoo187" path="res://Content/Sprites/Environment/ice_platform.jpg" id="3_pi2xo"]
 [ext_resource type="PackedScene" uid="uid://qgmcjic57mg8" path="res://Character/player.tscn" id="3_u2qcl"]
+[ext_resource type="Script" path="res://scripts/settings_menu_ingame.gd" id="4_13fv0"]
 [ext_resource type="Texture2D" uid="uid://dpkxespw65jw0" path="res://Content/Sprites/Environment/netral_stone_idle.png" id="5_2bbyj"]
 [ext_resource type="Script" path="res://Content/Map.gd" id="5_6juep"]
+[ext_resource type="Script" path="res://scripts/controls_menu_ingame.gd" id="5_8drpu"]
 [ext_resource type="AudioStream" uid="uid://bl282em5f4f7f" path="res://Content/Music/8bit_bgm..mp3" id="7_u8lyo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2srvn"]
@@ -20,6 +22,60 @@ shadow_offset = Vector2(3, 3)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2crdh"]
 font_size = 40
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rbtmi"]
+font_size = 32
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pwy4f"]
+font_size = 18
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0aypj"]
+font_size = 10
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eawhe"]
+font_size = 18
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jmqjr"]
+font_size = 10
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w26wv"]
+font_size = 32
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nf367"]
+font_size = 18
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1asj6"]
+font_size = 24
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ocqni"]
+font_size = 24
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(3, 3)
@@ -192,9 +248,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -208.0
-offset_top = -113.0
+offset_top = -137.0
 offset_right = 208.0
-offset_bottom = 113.0
+offset_bottom = 137.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -223,6 +279,11 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "RESUME"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "SETTINGS"
 
 [node name="RetryButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -293,6 +354,290 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "EXIT"
 
+[node name="SettingsNControlsHider" type="ColorRect" parent="CanvasLayer/UI/CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.125, 0.125, 0.125, 1)
+
+[node name="SettingsMenu" type="Panel" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -148.0
+offset_right = 196.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d8r44")
+script = ExtResource("4_13fv0")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="SettingsLabel" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_rbtmi")
+horizontal_alignment = 1
+
+[node name="MusicSettings" type="HBoxContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Music" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/MusicSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MUSIC"
+label_settings = SubResource("LabelSettings_pwy4f")
+
+[node name="MusicVal" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/MusicSettings"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "50"
+label_settings = SubResource("LabelSettings_0aypj")
+
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/MusicSettings"]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+max_value = 2.0
+step = 0.02
+value = 1.0
+
+[node name="SFXSettings" type="HBoxContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SFX" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/SFXSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SFX"
+label_settings = SubResource("LabelSettings_eawhe")
+
+[node name="SFXVal" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/SFXSettings"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "50"
+label_settings = SubResource("LabelSettings_0aypj")
+
+[node name="SFXSlider" type="HSlider" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/SFXSettings"]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+max_value = 2.0
+step = 0.02
+value = 1.0
+
+[node name="FullscreenSettings" type="HBoxContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Fullscreen" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/FullscreenSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FULLSCREEN"
+label_settings = SubResource("LabelSettings_eawhe")
+
+[node name="FullscreenVal" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/FullscreenSettings"]
+layout_mode = 2
+text = "OFF"
+label_settings = SubResource("LabelSettings_jmqjr")
+
+[node name="FullscreenButton" type="CheckButton" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/FullscreenSettings"]
+layout_mode = 2
+
+[node name="ControlsButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "CONTROLS"
+
+[node name="SettingsCloseButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "CLOSE"
+
+[node name="ControlsMenu" type="Control" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_8drpu")
+
+[node name="ControlsPanel" type="Panel" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -168.0
+offset_right = 196.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d8r44")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="ControlsLabel" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CONTROLS"
+label_settings = SubResource("LabelSettings_w26wv")
+horizontal_alignment = 1
+
+[node name="LeftInput" type="HBoxContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftLabel" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/LeftInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LEFT"
+label_settings = SubResource("LabelSettings_nf367")
+
+[node name="LeftButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/LeftInput"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "A"
+
+[node name="RightInput" type="HBoxContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightLabel" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/RightInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RIGHT"
+label_settings = SubResource("LabelSettings_nf367")
+
+[node name="RightButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/RightInput"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "D"
+
+[node name="JumpInput" type="HBoxContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="JumpLabel" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/JumpInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "JUMP"
+label_settings = SubResource("LabelSettings_nf367")
+
+[node name="JumpButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/JumpInput"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "SPACE"
+
+[node name="PauseInput" type="HBoxContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PauseLabel" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/PauseInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_nf367")
+
+[node name="PauseButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/PauseInput"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "ESCAPE"
+
+[node name="ControlsCloseButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "CLOSE"
+
+[node name="InputPanel" type="Panel" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = -81.0
+offset_right = 167.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d8r44")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/InputPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/InputPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="EnterInputLabel" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/InputPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "ENTER INPUT:"
+label_settings = SubResource("LabelSettings_1asj6")
+horizontal_alignment = 1
+
+[node name="InputLabel" type="Label" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/InputPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 47)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_ocqni")
+horizontal_alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/InputPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "CONFIRM"
+
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
@@ -302,13 +647,15 @@ offset_bottom = 40.0
 [node name="SCORE" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 0
 offset_left = 13.0
-offset_top = 679.0
+offset_top = 717.0
 offset_right = 401.0
-offset_bottom = 705.0
+offset_bottom = 750.0
 text = "SCORE:"
 label_settings = SubResource("LabelSettings_kamii")
 
 [node name="MusicButton" type="Button" parent="CanvasLayer/Control"]
+process_mode = 1
+visible = false
 layout_mode = 0
 offset_left = 12.0
 offset_top = 715.0
@@ -1152,7 +1499,6 @@ shape = SubResource("RectangleShape2D_8tv2a")
 position = Vector2(0, -24)
 max_speed = 150.0
 friction_speed = 10.0
-max_bounce_speed = 350.0
 jump_velocity = 350.0
 run_to_jump_boost = 1.0
 camera = NodePath("../Camera2D")
@@ -1160,15 +1506,29 @@ camera = NodePath("../Camera2D")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("7_u8lyo")
+volume_db = -12.0
 autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer/RestartButton" to="Map" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Return" to="Map" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/MarginContainer/VBoxContainer/PauseButton" to="CanvasLayer/UI" method="_on_pause_button_pressed" flags=18]
 [connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer/ResumeButton" to="CanvasLayer/UI" method="_on_resume_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer/SettingsButton" to="CanvasLayer/UI" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer/RetryButton" to="CanvasLayer/UI" method="_on_retry_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer/ExitButton" to="CanvasLayer/UI" method="_on_exit_button_pressed" flags=18]
 [connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer/RetryButton" to="CanvasLayer/UI" method="_on_retry_button_pressed" flags=18]
 [connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer/ExitButton" to="CanvasLayer/UI" method="_on_exit_button_pressed" flags=18]
+[connection signal="value_changed" from="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/MusicSettings/MusicSlider" to="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu" method="_on_music_slider_value_changed" flags=18]
+[connection signal="value_changed" from="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/SFXSettings/SFXSlider" to="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu" method="_on_sfx_slider_value_changed" flags=18]
+[connection signal="toggled" from="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/FullscreenSettings/FullscreenButton" to="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu" method="_on_check_button_toggled" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/ControlsButton" to="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu" method="_on_controls_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu/MarginContainer/VBoxContainer/SettingsCloseButton" to="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/SettingsMenu" method="_on_settings_close_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/LeftInput/LeftButton" to="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu" method="_on_left_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/RightInput/RightButton" to="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu" method="_on_right_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/JumpInput/JumpButton" to="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu" method="_on_jump_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/PauseInput/PauseButton" to="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu" method="_on_pause_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/ControlsPanel/MarginContainer/VBoxContainer/ControlsCloseButton" to="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu" method="_on_controls_close_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu/InputPanel/MarginContainer/VBoxContainer/ConfirmButton" to="CanvasLayer/UI/CanvasLayer/SettingsNControlsHider/ControlsMenu" method="_on_confirm_button_pressed" flags=18]
 [connection signal="pressed" from="CanvasLayer/Control/MusicButton" to="Map" method="_on_music_button_pressed"]
 [connection signal="player_die" from="Map" to="CanvasLayer/UI" method="_on_map_player_die"]

@@ -74,6 +74,7 @@ func update_jump():
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = (jump_velocity + abs(jump_power * run_to_jump_boost)) * -1
 		jump_power = 0.0
+		SfxAutoload.play_sfx(SfxAutoload.JUMP)
 func update_movement():
 	velocity.x = clampf(velocity.x + (speed * direction.x), -max_speed, max_speed)
 func update_friction():
@@ -98,6 +99,7 @@ func update_wall_bounce():
 				if not collider.get_collision_layer_value(2):
 					velocity.x = clampf(velocity.x + (abs(bounce_power) * bounciness * collision.get_normal().x),-max_bounce_speed,max_bounce_speed)
 					bounce_power = 0
+					SfxAutoload.play_sfx(SfxAutoload.BOUNCE)
 					break
 func update_animation():
 	if not get_collision_mask_value(5):
