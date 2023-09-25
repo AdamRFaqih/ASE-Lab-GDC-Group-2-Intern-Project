@@ -134,6 +134,7 @@ func randomize_region_1():
 	startplatform.modulate.a = 1
 	startplatform.position.y = 0
 	startplatform.set_collision_layer_value(1,true)
+	var r = 0
 	for i in range(platform.get_child_count()):
 		var child = platform.get_child(i) as Node2D
 		child.position.y = (i+1) * platformRepeatDistance
@@ -144,35 +145,64 @@ func randomize_region_1():
 		var sprite_b = b.get_child(0) as Sprite2D
 		a.position.y = 0
 		b.position.y = 0
-		var start_color = randi_range(0,100)
-		if start_color % 2 == 0:
-			#a.modulate = Color(0,1,1)
-			sprite_a.texture = ice_platform_texture
-			a.set_collision_layer_value(2,true)
-			a.set_collision_layer_value(3,false)
-			a.position.x = randi_range(22,66)
-			#b.modulate = Color(1,0,0)
-			sprite_b.texture = fire_platform_texture
-			b.set_collision_layer_value(2,false)
-			b.set_collision_layer_value(3,true)
-			b.position.x = randi_range(-66,-22)
+		if i == 0:
+			var start_color = randi_range(0,100)
+			if start_color % 2 == 0:
+				r = 0
+				#a.modulate = Color(0,1,1)
+				sprite_a.texture = ice_platform_texture
+				a.set_collision_layer_value(2,true)
+				a.set_collision_layer_value(3,false)
+				a.position.x = randi_range(22,66)
+				#b.modulate = Color(1,0,0)
+				sprite_b.texture = fire_platform_texture
+				b.set_collision_layer_value(2,false)
+				b.set_collision_layer_value(3,true)
+				b.position.x = randi_range(-66,-22)
+			else:
+				r = 1
+				#a.modulate = Color(1,0,0)
+				sprite_a.texture = fire_platform_texture
+				a.set_collision_layer_value(2,false)
+				a.set_collision_layer_value(3,true)
+				a.position.x = randi_range(22,66)
+				#b.modulate = Color(0,1,1)
+				sprite_b.texture = ice_platform_texture
+				b.set_collision_layer_value(2,true)
+				b.set_collision_layer_value(3,false)
+				b.position.x = randi_range(-66,-22)		
 		else:
-			#a.modulate = Color(1,0,0)
-			sprite_a.texture = fire_platform_texture
-			a.set_collision_layer_value(2,false)
-			a.set_collision_layer_value(3,true)
-			a.position.x = randi_range(22,66)
-			#b.modulate = Color(0,1,1)
-			sprite_b.texture = ice_platform_texture
-			b.set_collision_layer_value(2,true)
-			b.set_collision_layer_value(3,false)
-			b.position.x = randi_range(-66,-22)		
+			if r == 1:
+				r = 0
+				#a.modulate = Color(0,1,1)
+				sprite_a.texture = ice_platform_texture
+				a.set_collision_layer_value(2,true)
+				a.set_collision_layer_value(3,false)
+				a.position.x = randi_range(22,66)
+				#b.modulate = Color(1,0,0)
+				sprite_b.texture = fire_platform_texture
+				b.set_collision_layer_value(2,false)
+				b.set_collision_layer_value(3,true)
+				b.position.x = randi_range(-66,-22)
+			else:
+				r = 1
+				#a.modulate = Color(1,0,0)
+				sprite_a.texture = fire_platform_texture
+				a.set_collision_layer_value(2,false)
+				a.set_collision_layer_value(3,true)
+				a.position.x = randi_range(22,66)
+				#b.modulate = Color(0,1,1)
+				sprite_b.texture = ice_platform_texture
+				b.set_collision_layer_value(2,true)
+				b.set_collision_layer_value(3,false)
+				b.position.x = randi_range(-66,-22)	
 func randomize_region_2():
 	var platform = region_2.get_child(0)
 	var startplatform = region_2.get_child(1) as StaticBody2D
 	startplatform.modulate.a = 1
 	startplatform.position.y = 0
 	startplatform.set_collision_layer_value(1,true)
+	var r = 0
 	for i in range(platform.get_child_count()):
 		var child = platform.get_child(i) as Node2D
 		child.position.y = (i+1) * platformRepeatDistance
@@ -183,29 +213,57 @@ func randomize_region_2():
 		var sprite_b = b.get_child(0) as Sprite2D
 		a.position.y = 0
 		b.position.y = 0
-		var start_color = randi_range(0,100)
-		if start_color % 2 == 0:
-			#a.modulate = Color(0,1,1)
-			sprite_a.texture = ice_platform_texture
-			a.set_collision_layer_value(2,true)
-			a.set_collision_layer_value(3,false)
-			a.position.x = randi_range(22,66)
-			#b.modulate = Color(1,0,0)
-			sprite_b.texture = fire_platform_texture
-			b.set_collision_layer_value(2,false)
-			b.set_collision_layer_value(3,true)
-			b.position.x = randi_range(-66,-22)
+		if i == 0:
+			var start_color = randi_range(0,100)
+			if start_color % 2 == 0:
+				r = 0
+				#a.modulate = Color(0,1,1)
+				sprite_a.texture = ice_platform_texture
+				a.set_collision_layer_value(2,true)
+				a.set_collision_layer_value(3,false)
+				a.position.x = randi_range(22,66)
+				#b.modulate = Color(1,0,0)
+				sprite_b.texture = fire_platform_texture
+				b.set_collision_layer_value(2,false)
+				b.set_collision_layer_value(3,true)
+				b.position.x = randi_range(-66,-22)
+			else:
+				r = 1
+				#a.modulate = Color(1,0,0)
+				sprite_a.texture = fire_platform_texture
+				a.set_collision_layer_value(2,false)
+				a.set_collision_layer_value(3,true)
+				a.position.x = randi_range(22,66)
+				#b.modulate = Color(0,1,1)
+				sprite_b.texture = ice_platform_texture
+				b.set_collision_layer_value(2,true)
+				b.set_collision_layer_value(3,false)
+				b.position.x = randi_range(-66,-22)		
 		else:
-			#a.modulate = Color(1,0,0)
-			sprite_a.texture = fire_platform_texture
-			a.set_collision_layer_value(2,false)
-			a.set_collision_layer_value(3,true)
-			a.position.x = randi_range(22,66)
-			#b.modulate = Color(0,1,1)
-			sprite_b.texture = ice_platform_texture
-			b.set_collision_layer_value(2,true)
-			b.set_collision_layer_value(3,false)
-			b.position.x = randi_range(-66,-22)
+			if r == 1:
+				r = 0
+				#a.modulate = Color(0,1,1)
+				sprite_a.texture = ice_platform_texture
+				a.set_collision_layer_value(2,true)
+				a.set_collision_layer_value(3,false)
+				a.position.x = randi_range(22,66)
+				#b.modulate = Color(1,0,0)
+				sprite_b.texture = fire_platform_texture
+				b.set_collision_layer_value(2,false)
+				b.set_collision_layer_value(3,true)
+				b.position.x = randi_range(-66,-22)
+			else:
+				r = 1
+				#a.modulate = Color(1,0,0)
+				sprite_a.texture = fire_platform_texture
+				a.set_collision_layer_value(2,false)
+				a.set_collision_layer_value(3,true)
+				a.position.x = randi_range(22,66)
+				#b.modulate = Color(0,1,1)
+				sprite_b.texture = ice_platform_texture
+				b.set_collision_layer_value(2,true)
+				b.set_collision_layer_value(3,false)
+				b.position.x = randi_range(-66,-22)
 func randomize_color_region_1():
 	var platform = region_1.get_child(0)
 	for i in range(platform.get_child_count()):
@@ -215,7 +273,7 @@ func randomize_color_region_1():
 		var b = child.get_child(1) as StaticBody2D
 		var sprite_a = a.get_child(0) as Sprite2D
 		var sprite_b = b.get_child(0) as Sprite2D
-		if a.modulate.r > 0:
+		if sprite_a.texture == fire_platform_texture:
 			#a.modulate = Color(0,1,1)
 			sprite_a.texture = ice_platform_texture
 			a.set_collision_layer_value(2,true)
@@ -242,7 +300,7 @@ func randomize_color_region_2():
 		var b = child.get_child(1) as StaticBody2D
 		var sprite_a = a.get_child(0) as Sprite2D
 		var sprite_b = b.get_child(0) as Sprite2D
-		if a.modulate.r > 0:
+		if sprite_a.texture == fire_platform_texture:
 			#a.modulate = Color(0,1,1)
 			sprite_a.texture = ice_platform_texture
 			a.set_collision_layer_value(2,true)
