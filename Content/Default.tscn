@@ -1,0 +1,1174 @@
+[gd_scene load_steps=19 format=3 uid="uid://bgk2nuaaoq3gp"]
+
+[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://resources/default_theme.tres" id="1_d8r44"]
+[ext_resource type="Texture2D" uid="uid://ce0hhq0fledti" path="res://Content/Sprites/Environment/fire_platform.jpg" id="2_8mx7i"]
+[ext_resource type="Texture2D" uid="uid://dpakvklrd2h25" path="res://Environment/fog.jpg" id="2_v34e7"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="2_xhjg1"]
+[ext_resource type="Texture2D" uid="uid://4fy3hf7j5fqu" path="res://Environment/block_wall.jpg" id="3_1o7hb"]
+[ext_resource type="FontFile" uid="uid://b7t121aftjds2" path="res://assets/fonts/8_bit_pusab/8-bit-pusab.ttf" id="3_8tgnf"]
+[ext_resource type="Texture2D" uid="uid://m67xosvoo187" path="res://Content/Sprites/Environment/ice_platform.jpg" id="3_pi2xo"]
+[ext_resource type="PackedScene" uid="uid://qgmcjic57mg8" path="res://Character/player.tscn" id="3_u2qcl"]
+[ext_resource type="Texture2D" uid="uid://dpkxespw65jw0" path="res://Content/Sprites/Environment/netral_stone_idle.png" id="5_2bbyj"]
+[ext_resource type="Script" path="res://Content/Map.gd" id="5_6juep"]
+[ext_resource type="AudioStream" uid="uid://bl282em5f4f7f" path="res://Content/Music/8bit_bgm..mp3" id="7_u8lyo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2srvn"]
+font_size = 10
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2crdh"]
+font_size = 40
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kamii"]
+font = ExtResource("3_8tgnf")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hy1pp"]
+size = Vector2(44, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fdxg"]
+size = Vector2(44, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yospw"]
+size = Vector2(176, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tv2a"]
+size = Vector2(16, 385)
+
+[node name="Default" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.5
+offset_top = -33.0
+offset_right = 85.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu/MarginContainer"]
+layout_mode = 2
+
+[node name="SCORE" type="Label" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SCORE:"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="MenuButton" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+
+[node name="MainMenu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.5
+offset_top = -33.0
+offset_right = 85.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Return" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Options" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="BackToMenu" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+
+[node name="Restart" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_d8r44")
+script = ExtResource("2_xhjg1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CanvasLayer/UI"]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d8r44")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PauseButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "PAUSE"
+
+[node name="AltPauseLabel" type="Label" parent="CanvasLayer/UI/CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "or press [ESCAPE]"
+label_settings = SubResource("LabelSettings_2srvn")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI/CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="PauseScreen" type="ColorRect" parent="CanvasLayer/UI/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d8r44")
+color = Color(0, 0, 0, 0.196078)
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI/CanvasLayer/PauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -113.0
+offset_right = 208.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "GAME PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "RESUME"
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "RETRY"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "EXIT"
+
+[node name="GameOverScreen" type="ColorRect" parent="CanvasLayer/UI/CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d8r44")
+color = Color(0, 0, 0, 0.196078)
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI/CanvasLayer/GameOverScreen"]
+custom_minimum_size = Vector2(425, 65)
+layout_mode = 2
+offset_left = 300.0
+offset_top = 247.0
+offset_right = 725.0
+offset_bottom = 478.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/CanvasLayer/GameOverScreen/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/CanvasLayer/GameOverScreen/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_2crdh")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/UI/CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SCORE: 0"
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "RETRY"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/UI/CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "EXIT"
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SCORE" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 679.0
+offset_right = 401.0
+offset_bottom = 705.0
+text = "SCORE:"
+label_settings = SubResource("LabelSettings_kamii")
+
+[node name="MusicButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 715.0
+offset_right = 147.0
+offset_bottom = 746.0
+theme = ExtResource("1_d8r44")
+action_mode = 0
+text = "MUSIC ENABLED"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -24)
+zoom = Vector2(5, 5)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("player", "region_1", "region_2", "camera", "debug_fog", "menu_ui", "score_text", "menu_score_text", "music", "music_button")]
+script = ExtResource("5_6juep")
+player = NodePath("../Player")
+region_1 = NodePath("region_1")
+region_2 = NodePath("region_2")
+camera = NodePath("../Camera2D")
+debug_fog = NodePath("Sprite2D")
+menu_ui = NodePath("../CanvasLayer/Menu")
+fire_platform_texture = ExtResource("2_8mx7i")
+ice_platform_texture = ExtResource("3_pi2xo")
+score_text = NodePath("../CanvasLayer/Control/SCORE")
+menu_score_text = NodePath("../CanvasLayer/UI/CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer/ScoreLabel")
+music = NodePath("../AudioStreamPlayer")
+music_button = NodePath("../CanvasLayer/Control/MusicButton")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map"]
+visible = false
+position = Vector2(-1.5, 20)
+scale = Vector2(28.5625, 4.16667)
+texture = ExtResource("2_v34e7")
+
+[node name="region_1" type="Node2D" parent="Map"]
+
+[node name="platforms" type="Node2D" parent="Map/region_1"]
+
+[node name="platform1" type="Node2D" parent="Map/region_1/platforms"]
+position = Vector2(0, -35)
+
+[node name="a" type="StaticBody2D" parent="Map/region_1/platforms/platform1"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform1/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform1/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_1/platforms/platform1"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform1/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform1/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform2" type="Node2D" parent="Map/region_1/platforms"]
+position = Vector2(0, -70)
+
+[node name="a" type="StaticBody2D" parent="Map/region_1/platforms/platform2"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform2/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform2/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_1/platforms/platform2"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform2/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform2/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform3" type="Node2D" parent="Map/region_1/platforms"]
+position = Vector2(0, -105)
+
+[node name="a" type="StaticBody2D" parent="Map/region_1/platforms/platform3"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform3/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform3/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_1/platforms/platform3"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform3/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform3/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform4" type="Node2D" parent="Map/region_1/platforms"]
+position = Vector2(0, -140)
+
+[node name="a" type="StaticBody2D" parent="Map/region_1/platforms/platform4"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform4/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform4/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_1/platforms/platform4"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform4/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform4/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform5" type="Node2D" parent="Map/region_1/platforms"]
+position = Vector2(0, -175)
+
+[node name="a" type="StaticBody2D" parent="Map/region_1/platforms/platform5"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform5/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform5/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_1/platforms/platform5"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform5/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform5/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform6" type="Node2D" parent="Map/region_1/platforms"]
+position = Vector2(0, -210)
+
+[node name="a" type="StaticBody2D" parent="Map/region_1/platforms/platform6"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform6/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform6/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_1/platforms/platform6"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform6/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform6/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform7" type="Node2D" parent="Map/region_1/platforms"]
+position = Vector2(0, -245)
+
+[node name="a" type="StaticBody2D" parent="Map/region_1/platforms/platform7"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform7/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform7/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_1/platforms/platform7"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform7/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform7/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform8" type="Node2D" parent="Map/region_1/platforms"]
+position = Vector2(0, -280)
+
+[node name="a" type="StaticBody2D" parent="Map/region_1/platforms/platform8"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform8/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform8/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_1/platforms/platform8"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform8/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform8/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform9" type="Node2D" parent="Map/region_1/platforms"]
+position = Vector2(0, -315)
+
+[node name="a" type="StaticBody2D" parent="Map/region_1/platforms/platform9"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform9/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform9/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_1/platforms/platform9"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform9/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform9/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform10" type="Node2D" parent="Map/region_1/platforms"]
+position = Vector2(0, -350)
+
+[node name="a" type="StaticBody2D" parent="Map/region_1/platforms/platform10"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform10/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform10/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_1/platforms/platform10"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/platforms/platform10/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/platforms/platform10/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="Start_Platform" type="StaticBody2D" parent="Map/region_1"]
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/Start_Platform"]
+texture_repeat = 3
+texture = ExtResource("5_2bbyj")
+region_enabled = true
+region_rect = Rect2(-1, 0, 176, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/Start_Platform"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_yospw")
+one_way_collision = true
+
+[node name="Left_Wall" type="StaticBody2D" parent="Map/region_1"]
+position = Vector2(-96, -2)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/Left_Wall"]
+texture_repeat = 3
+position = Vector2(0, -186)
+texture = ExtResource("3_1o7hb")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 385)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/Left_Wall"]
+position = Vector2(0, -186)
+shape = SubResource("RectangleShape2D_8tv2a")
+
+[node name="Right_Wall" type="StaticBody2D" parent="Map/region_1"]
+position = Vector2(96, -2)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_1/Right_Wall"]
+texture_repeat = 3
+position = Vector2(0, -186)
+texture = ExtResource("3_1o7hb")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 385)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_1/Right_Wall"]
+position = Vector2(0, -186)
+shape = SubResource("RectangleShape2D_8tv2a")
+
+[node name="region_2" type="Node2D" parent="Map"]
+position = Vector2(0, -385)
+
+[node name="platforms" type="Node2D" parent="Map/region_2"]
+
+[node name="platform1" type="Node2D" parent="Map/region_2/platforms"]
+position = Vector2(0, -35)
+
+[node name="a" type="StaticBody2D" parent="Map/region_2/platforms/platform1"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform1/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform1/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_2/platforms/platform1"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform1/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform1/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform2" type="Node2D" parent="Map/region_2/platforms"]
+position = Vector2(0, -70)
+
+[node name="a" type="StaticBody2D" parent="Map/region_2/platforms/platform2"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform2/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform2/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_2/platforms/platform2"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform2/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform2/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform3" type="Node2D" parent="Map/region_2/platforms"]
+position = Vector2(0, -105)
+
+[node name="a" type="StaticBody2D" parent="Map/region_2/platforms/platform3"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform3/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform3/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_2/platforms/platform3"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform3/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform3/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform4" type="Node2D" parent="Map/region_2/platforms"]
+position = Vector2(0, -140)
+
+[node name="a" type="StaticBody2D" parent="Map/region_2/platforms/platform4"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform4/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform4/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_2/platforms/platform4"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform4/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform4/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform5" type="Node2D" parent="Map/region_2/platforms"]
+position = Vector2(0, -175)
+
+[node name="a" type="StaticBody2D" parent="Map/region_2/platforms/platform5"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform5/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform5/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_2/platforms/platform5"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform5/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform5/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform6" type="Node2D" parent="Map/region_2/platforms"]
+position = Vector2(0, -210)
+
+[node name="a" type="StaticBody2D" parent="Map/region_2/platforms/platform6"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform6/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform6/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_2/platforms/platform6"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform6/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform6/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform7" type="Node2D" parent="Map/region_2/platforms"]
+position = Vector2(0, -245)
+
+[node name="a" type="StaticBody2D" parent="Map/region_2/platforms/platform7"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform7/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform7/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_2/platforms/platform7"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform7/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform7/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform8" type="Node2D" parent="Map/region_2/platforms"]
+position = Vector2(0, -280)
+
+[node name="a" type="StaticBody2D" parent="Map/region_2/platforms/platform8"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform8/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform8/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_2/platforms/platform8"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform8/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform8/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform9" type="Node2D" parent="Map/region_2/platforms"]
+position = Vector2(0, -315)
+
+[node name="a" type="StaticBody2D" parent="Map/region_2/platforms/platform9"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform9/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform9/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_2/platforms/platform9"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform9/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform9/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="platform10" type="Node2D" parent="Map/region_2/platforms"]
+position = Vector2(0, -350)
+
+[node name="a" type="StaticBody2D" parent="Map/region_2/platforms/platform10"]
+position = Vector2(22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform10/a"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform10/a"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_hy1pp")
+one_way_collision = true
+
+[node name="b" type="StaticBody2D" parent="Map/region_2/platforms/platform10"]
+position = Vector2(-22, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/platforms/platform10/b"]
+texture_repeat = 3
+scale = Vector2(0.915, 0.485)
+texture = ExtResource("3_pi2xo")
+region_rect = Rect2(0, 0, 48, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/platforms/platform10/b"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5fdxg")
+one_way_collision = true
+
+[node name="Start_Platform" type="StaticBody2D" parent="Map/region_2"]
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/Start_Platform"]
+texture_repeat = 3
+texture = ExtResource("5_2bbyj")
+region_enabled = true
+region_rect = Rect2(-1, 0, 176, 7)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/Start_Platform"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_yospw")
+one_way_collision = true
+
+[node name="Left_Wall" type="StaticBody2D" parent="Map/region_2"]
+position = Vector2(-96, -2)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/Left_Wall"]
+texture_repeat = 3
+position = Vector2(0, -186)
+texture = ExtResource("3_1o7hb")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 385)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/Left_Wall"]
+position = Vector2(0, -186)
+shape = SubResource("RectangleShape2D_8tv2a")
+
+[node name="Right_Wall" type="StaticBody2D" parent="Map/region_2"]
+position = Vector2(96, -2)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Map/region_2/Right_Wall"]
+texture_repeat = 3
+position = Vector2(0, -186)
+texture = ExtResource("3_1o7hb")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 385)
+
+[node name="Collision" type="CollisionShape2D" parent="Map/region_2/Right_Wall"]
+position = Vector2(0, -186)
+shape = SubResource("RectangleShape2D_8tv2a")
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_u2qcl")]
+position = Vector2(0, -24)
+max_speed = 150.0
+friction_speed = 10.0
+max_bounce_speed = 350.0
+jump_velocity = 350.0
+run_to_jump_boost = 1.0
+camera = NodePath("../Camera2D")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_u8lyo")
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer/RestartButton" to="Map" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Return" to="Map" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/MarginContainer/VBoxContainer/PauseButton" to="CanvasLayer/UI" method="_on_pause_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer/ResumeButton" to="CanvasLayer/UI" method="_on_resume_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer/RetryButton" to="CanvasLayer/UI" method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/PauseScreen/Panel/MarginContainer/VBoxContainer/ExitButton" to="CanvasLayer/UI" method="_on_exit_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer/RetryButton" to="CanvasLayer/UI" method="_on_retry_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/UI/CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer/ExitButton" to="CanvasLayer/UI" method="_on_exit_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/Control/MusicButton" to="Map" method="_on_music_button_pressed"]
+[connection signal="player_die" from="Map" to="CanvasLayer/UI" method="_on_map_player_die"]
