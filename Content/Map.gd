@@ -17,6 +17,7 @@ var fog_anchor_position : float = 0
 var hasStarted : bool = false
 var platform_vanish_time : int = 1000
 var platform_fall_speed : float = 0.5
+var fog_speed : float = 0.5
 var has_platform_below : bool = true
 var platform_time : Array[int]
 var platforms : Array[StaticBody2D]
@@ -115,7 +116,7 @@ func _process(delta):
 			randomize_color_region_1()
 		last_sprite_change_position = last_sprite_change_position - 385 #nilai 390 diatur sesuai lokasi end point nya
 	if hasStarted:
-		fog_position -= 0.5
+		fog_position -= fog_speed
 		update_platforms()
 	if not has_platform_below:
 		end_game()
