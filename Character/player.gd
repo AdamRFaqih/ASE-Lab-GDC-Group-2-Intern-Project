@@ -1,13 +1,13 @@
 extends CharacterBody2D # Nama Lain dari KinematicBody2D kayaknya 
 
 # Properti Karakter
-@export var max_speed : float = 500.0
-@export var speed : float = 15.0
-@export var friction_speed : float = 5.0
-@export var bounciness : float = 1.0
-@export var max_bounce_speed : float = 500.0
-@export var jump_velocity : float = 500.0
-@export var run_to_jump_boost : float = 0.637
+@export var max_speed : float = 150
+@export var speed : float = 15
+@export var friction_speed : float = 10
+@export var bounciness : float = 1
+@export var max_bounce_speed : float = 500
+@export var jump_velocity : float = 350
+@export var run_to_jump_boost : float = 1
 
 # Animasi
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -35,6 +35,7 @@ func _ready():
 	velocity = Vector2.ZERO
 	bounce_power = 0.0
 	jump_power = 0.0
+	debuglabel.text = "Move Speed: " + str(speed) + "\n" + "Friction Speed: " + str(friction_speed) + "\n" + "Bounciness: " + str(bounciness) + "\n" + "Jump Velocity: " + str(jump_velocity) + "\n" + "Run to jump boost: " + str(run_to_jump_boost)
 
 func _physics_process(delta):
 	update_input()
@@ -47,7 +48,8 @@ func _physics_process(delta):
 	update_animation()
 	update_rotation()
 	update_camera(delta)
-
+	update_speed_mechanic()
+	
 func update_input():
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -134,3 +136,19 @@ func update_rotation():
 func update_camera(delta):
 	if (get_collision_mask_value(3) or get_collision_mask_value(2)) and not get_collision_mask_value(5):
 		camera.position.y = lerpf(camera.global_position.y,global_position.y,camera_follow_speed*delta)
+		
+@export var max_normal_speed : float = 25
+@export var min_friction_speed : float = 1
+@export var max_bounciness : float = 3
+@export var max_jump_velocity : float = 500
+@export var max_run_to_jump_boost : float = 2
+@export var debuglabel : Label
+func update_speed_mechanic():
+	if get_collision_mask_value(6):
+		set_collision_mask_value(6,false)
+		speed = clampf(speed + 0.3, speed, max_normal_speed)
+		friction_speed = clampf(friction_speed - 0.3, min_friction_speed, friction_speed)
+		bounciness = clampf(bounciness + 0.1, bounciness, max_bounciness)
+		jump_velocity = clampf(jump_velocity + 5, jump_velocity, max_jump_velocity)
+		run_to_jump_boost = clampf(run_to_jump_boost + 0.1, run_to_jump_boost, max_run_to_jump_boost)
+		debuglabel.text = "Move Speed: " + str(speed) + "\n" + "Friction Speed: " + str(friction_speed) + "\n" + "Bounciness: " + str(bounciness) + "\n" + "Jump Velocity: " + str(jump_velocity) + "\n" + "Run to jump boost: " + str(run_to_jump_boost)

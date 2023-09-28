@@ -644,6 +644,29 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="DEBUG_PLAYER" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 383.0
+offset_right = 401.0
+offset_bottom = 548.0
+text = "Move Speed:
+Friction Speed:
+Bounciness:
+Jump Velocity:
+Run to Jump Boost:"
+label_settings = SubResource("LabelSettings_kamii")
+
+[node name="DEBUG_MAP" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 633.0
+offset_right = 401.0
+offset_bottom = 699.0
+text = "Fog Speed:
+Platform Fall Speed:"
+label_settings = SubResource("LabelSettings_kamii")
+
 [node name="SCORE" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 0
 offset_left = 13.0
@@ -673,7 +696,7 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("player", "region_1", "region_2", "camera", "debug_fog", "menu_ui", "score_text", "menu_score_text", "music", "music_button")]
+[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("player", "region_1", "region_2", "camera", "debug_fog", "menu_ui", "score_text", "menu_score_text", "music", "music_button", "debuglabel")]
 script = ExtResource("5_6juep")
 player = NodePath("../Player")
 region_1 = NodePath("region_1")
@@ -687,6 +710,7 @@ score_text = NodePath("../CanvasLayer/Control/SCORE")
 menu_score_text = NodePath("../CanvasLayer/UI/CanvasLayer/GameOverScreen/Panel/MarginContainer/VBoxContainer/ScoreLabel")
 music = NodePath("../AudioStreamPlayer")
 music_button = NodePath("../CanvasLayer/Control/MusicButton")
+debuglabel = NodePath("../CanvasLayer/Control/DEBUG_MAP")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map"]
 visible = false
@@ -1495,13 +1519,10 @@ region_rect = Rect2(0, 0, 16, 385)
 position = Vector2(0, -186)
 shape = SubResource("RectangleShape2D_8tv2a")
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_u2qcl")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera", "debuglabel") instance=ExtResource("3_u2qcl")]
 position = Vector2(0, -24)
-max_speed = 150.0
-friction_speed = 10.0
-jump_velocity = 350.0
-run_to_jump_boost = 1.0
 camera = NodePath("../Camera2D")
+debuglabel = NodePath("../CanvasLayer/Control/DEBUG_PLAYER")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3

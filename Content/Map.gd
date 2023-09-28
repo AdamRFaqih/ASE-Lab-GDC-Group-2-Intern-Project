@@ -48,6 +48,15 @@ var next_region_2 : bool = true
 
 signal player_die
 
+# SPEED MECHANIC
+@export var minimumFogSpeed : float = 0.5
+@export var maximumFogSpeed : float = 1.3
+@export var penambahanFogSpeedPerLevel : float = 0.05
+@export var minimumPlatformFallSpeed : float = 0.3
+@export var maximumPlatformFallSpeed : float = 1.1
+@export var penambahanPlatformFallSpeedPerLevel : float = 0.03
+@export var debuglabel : Label
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	target_y_position = minimumYDistance * -3
@@ -88,6 +97,10 @@ func _ready():
 		platforms.append(a)
 		platforms.append(b)
 	game_ended = false
+	fog_speed = clampf(fog_speed,minimumFogSpeed,maximumFogSpeed)
+	platform_fall_speed = clampf(platform_fall_speed,minimumPlatformFallSpeed,maximumPlatformFallSpeed)
+	debuglabel.text = "Fog Speed : " + str(fog_speed) + "\n" + "Platform Fall Speed: " + str(platform_fall_speed)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if game_ended:
@@ -115,6 +128,15 @@ func _process(delta):
 			next_region_2 = true
 			randomize_color_region_1()
 		last_sprite_change_position = last_sprite_change_position - 385 #nilai 390 diatur sesuai lokasi end point nya
+		# SPEED MECHANIC
+		fog_speed = fog_speed + penambahanFogSpeedPerLevel
+		platform_fall_speed = platform_fall_speed + penambahanPlatformFallSpeedPerLevel
+		# CLAMP SPEED
+		fog_speed = clampf(fog_speed,minimumFogSpeed,maximumFogSpeed)
+		platform_fall_speed = clampf(platform_fall_speed,minimumPlatformFallSpeed,maximumPlatformFallSpeed)
+		debuglabel.text = "Fog Speed : " + str(fog_speed) + "\n" + "Platform Fall Speed: " + str(platform_fall_speed)
+		# PLAYER SPEED
+		player.set_collision_mask_value(6,true)
 	if hasStarted:
 		fog_position -= fog_speed
 		update_platforms()
@@ -122,7 +144,7 @@ func _process(delta):
 		end_game()
 	debug_fog.global_position.y = fog_position
 	update_score_and_player()
-
+	
 func randomize_map():
 	if target_y_position_in_region_1:
 		region_2.global_position.y -= minimumYDistance*4
