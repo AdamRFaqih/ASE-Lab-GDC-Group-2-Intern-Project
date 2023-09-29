@@ -383,6 +383,7 @@ func end_game():
 	player.set_collision_mask_value(5,true) # flag for ending game
 	fog_position -= 1
 	if abs(camera.global_position.y-player.global_position.y) > 125:
+		SfxAutoload.play_sfx(SfxAutoload.GAME_OVER)
 		player.set_process(false)
 		player.set_physics_process(false)
 		game_ended = true
@@ -395,7 +396,6 @@ func end_game():
 		#GlobalSettings.store_score(current_score)
 		menu_score_text.text = "SCORE: " + str(current_score)
 		music.stop()
-		SfxAutoload.play_sfx(SfxAutoload.GAME_OVER)
 
 func update_score_and_player():
 	var distance = abs(last_y_position-player.global_position.y)
