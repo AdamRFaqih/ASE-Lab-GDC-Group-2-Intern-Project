@@ -56,6 +56,7 @@ signal player_die
 @export var maximumPlatformFallSpeed : float = 1.1
 @export var penambahanPlatformFallSpeedPerLevel : float = 0.03
 @export var debuglabel : Label
+@onready var start_ground = $StartGround
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -103,6 +104,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_just_pressed("debug"):
+		debuglabel.visible = not debuglabel.visible
 	if game_ended:
 		if abs(camera.global_position.y + 26) < 5:
 			game_ended = false
@@ -370,6 +373,7 @@ func update_platforms():
 				else:
 					platform_time[i] += 1
 					platforms[i].position.y += platform_fall_speed
+					start_ground.position.y += platform_fall_speed
 			else:
 				platform_time[i] = 0
 				platforms[i].modulate.a = 1

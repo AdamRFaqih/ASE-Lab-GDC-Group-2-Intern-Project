@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ww2twgxt741m"]
 
 [ext_resource type="Script" path="res://scripts/credits.gd" id="1_t47vt"]
-[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://resources/default_theme.tres" id="1_tvbb5"]
+[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://scenes/default_theme.tres" id="1_tvbb5"]
 [ext_resource type="Texture2D" uid="uid://b88moweoqe62q" path="res://assets/draft-rpl-04_EDIT.png" id="2_ey8b4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_85jd3"]
@@ -28,10 +28,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -316.0
-offset_right = 200.0
-offset_bottom = 316.0
+offset_left = -386.0
+offset_top = -261.0
+offset_right = 386.0
+offset_bottom = 261.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_tvbb5")
@@ -51,107 +51,193 @@ text = "CREDITS"
 label_settings = SubResource("LabelSettings_85jd3")
 horizontal_alignment = 1
 
-[node name="ColorRect5" type="ColorRect" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect5" type="ColorRect" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 color = Color(0.345098, 0.419608, 0.54902, 0.686275)
 
-[node name="Header" type="Label" parent="VBoxContainer"]
+[node name="Header" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "SUPERVISOR"
+label_settings = SubResource("LabelSettings_rs5v4")
+horizontal_alignment = 1
+
+[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Adam Rafif Faqih"
+label_settings = SubResource("LabelSettings_mpdrp")
+horizontal_alignment = 1
+
+[node name="ColorRect7" type="ColorRect" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0.345098, 0.419608, 0.54902, 0.686275)
+
+[node name="Header6" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "GAME DESIGNER"
 label_settings = SubResource("LabelSettings_rs5v4")
 horizontal_alignment = 1
 
-[node name="Name" type="Label" parent="VBoxContainer"]
+[node name="Name2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Fauzan Almas Saepullah"
 label_settings = SubResource("LabelSettings_mpdrp")
 horizontal_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 color = Color(0.345098, 0.419608, 0.54902, 0.686275)
 
-[node name="Header2" type="Label" parent="VBoxContainer"]
+[node name="Header2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "GAME PROGRAMMERS"
 label_settings = SubResource("LabelSettings_rs5v4")
 horizontal_alignment = 1
 
-[node name="Name3" type="Label" parent="VBoxContainer"]
+[node name="Name3" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Ilham Yahya A."
 label_settings = SubResource("LabelSettings_mpdrp")
 horizontal_alignment = 1
 
-[node name="Name4" type="Label" parent="VBoxContainer"]
+[node name="Name4" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Baihaqi Bintang Bahana"
 label_settings = SubResource("LabelSettings_mpdrp")
 horizontal_alignment = 1
 
-[node name="ColorRect2" type="ColorRect" parent="VBoxContainer"]
+[node name="ColorRect2" type="ColorRect" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 color = Color(0.345098, 0.419608, 0.54902, 0.686275)
 
-[node name="Header4" type="Label" parent="VBoxContainer"]
+[node name="Header4" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "GAME ARTIST"
+text = "GAME ARTISTS"
 label_settings = SubResource("LabelSettings_rs5v4")
 horizontal_alignment = 1
 
-[node name="Name5" type="Label" parent="VBoxContainer"]
+[node name="Name7" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Muhammad Taufiq Al Fikri"
+label_settings = SubResource("LabelSettings_mpdrp")
+horizontal_alignment = 1
+
+[node name="Name5" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Ryannisa Syarifa T."
 label_settings = SubResource("LabelSettings_mpdrp")
 horizontal_alignment = 1
 
-[node name="ColorRect3" type="ColorRect" parent="VBoxContainer"]
+[node name="ColorRect3" type="ColorRect" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 color = Color(0.345098, 0.419608, 0.54902, 0.686275)
 
-[node name="Header5" type="Label" parent="VBoxContainer"]
+[node name="Header5" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "AUDIO COMPOSER"
 label_settings = SubResource("LabelSettings_rs5v4")
 horizontal_alignment = 1
 
-[node name="Name6" type="Label" parent="VBoxContainer"]
+[node name="Name6" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Habli Zulvana Ath-Thaariq"
 label_settings = SubResource("LabelSettings_mpdrp")
 horizontal_alignment = 1
 
-[node name="ColorRect4" type="ColorRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 3)
-layout_mode = 2
-color = Color(0.345098, 0.419608, 0.54902, 0.686275)
-
-[node name="Header3" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "SPECIAL THANKS:"
-label_settings = SubResource("LabelSettings_rs5v4")
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("2_ey8b4")
-stretch_mode = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 
-[node name="CloseButton" type="Button" parent="VBoxContainer/MarginContainer"]
+[node name="ColorRect4" type="ColorRect" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+color = Color(0.345098, 0.419608, 0.54902, 0.686275)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect5" type="ColorRect" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+color = Color(0.345098, 0.419608, 0.54902, 0.686275)
+
+[node name="Header" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "EXTERNAL ASSETS"
+label_settings = SubResource("LabelSettings_rs5v4")
+horizontal_alignment = 1
+
+[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Font:
+"
+label_settings = SubResource("LabelSettings_mpdrp")
+horizontal_alignment = 1
+
+[node name="Name2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "8-bit pusab by Seba Perez
+https://www.dafont.com
+/8-bit-pusab.font
+"
+label_settings = SubResource("LabelSettings_mpdrp")
+horizontal_alignment = 1
+
+[node name="ColorRect4" type="ColorRect" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0.345098, 0.419608, 0.54902, 0.686275)
+
+[node name="Header3" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "SPECIAL THANKS:"
+label_settings = SubResource("LabelSettings_rs5v4")
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 4
+stretch_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ey8b4")
+stretch_mode = 3
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 4
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "CLOSE"
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/CloseButton" to="." method="_on_close_button_pressed"]

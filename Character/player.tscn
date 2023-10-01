@@ -402,5 +402,3 @@ animation = &"fire_walk"
 position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_l6n7f")
 one_way_collision = true
-
-[connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]

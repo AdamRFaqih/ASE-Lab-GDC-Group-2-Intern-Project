@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://irwbfw81wkpp"]
+[gd_scene load_steps=11 format=3 uid="uid://irwbfw81wkpp"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_hxhad"]
+[ext_resource type="Texture2D" uid="uid://bfrn20s2r4rf3" path="res://Content/Sprites/Environment/background/Fix_1/ExportedLayers/0.png" id="2_efea3"]
 [ext_resource type="FontFile" uid="uid://cn51ttesv7cdn" path="res://assets/fonts/8bit_wonder/8-BIT WONDER.TTF" id="2_swq1e"]
-[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://scenes/default_theme.tres" id="3_phot3"]
+[ext_resource type="Texture2D" uid="uid://c8lngak6ia0ay" path="res://Content/Sprites/Environment/background/Fix_1/ExportedLayers/1.png" id="3_37jy6"]
+[ext_resource type="Texture2D" uid="uid://biipfpy4t0hdt" path="res://Content/Sprites/Environment/background/Fix_1/ExportedLayers/2.png" id="4_lbsj1"]
+[ext_resource type="Texture2D" uid="uid://dcexa6ydem7mb" path="res://Content/Sprites/Environment/background/Fix_1/ExportedLayers/3.png" id="5_l5sv0"]
+[ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://scenes/default_theme.tres" id="7_tlfvd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kt6gl"]
 font = ExtResource("2_swq1e")
@@ -46,12 +50,50 @@ script = ExtResource("1_hxhad")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_efea3")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_37jy6")
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_lbsj1")
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_l5sv0")
 
 [node name="TitleMenu" type="VSplitContainer" parent="CanvasLayer"]
 anchors_preset = 8
@@ -115,7 +157,7 @@ autowrap_mode = 2
 
 [node name="Panel" type="Panel" parent="CanvasLayer/TitleMenu"]
 layout_mode = 2
-theme = ExtResource("3_phot3")
+theme = ExtResource("7_tlfvd")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TitleMenu/Panel"]
 layout_mode = 1

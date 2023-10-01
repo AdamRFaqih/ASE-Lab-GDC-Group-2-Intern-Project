@@ -38,6 +38,8 @@ func _ready():
 	debuglabel.text = "Move Speed: " + str(speed) + "\n" + "Friction Speed: " + str(friction_speed) + "\n" + "Bounciness: " + str(bounciness) + "\n" + "Jump Velocity: " + str(jump_velocity) + "\n" + "Run to jump boost: " + str(run_to_jump_boost)
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("debug"):
+		debuglabel.visible = not debuglabel.visible
 	update_input()
 	update_gravity(delta)
 	update_jump()

@@ -1,7 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://bgk2nuaaoq3gp"]
+[gd_scene load_steps=35 format=3 uid="uid://bgk2nuaaoq3gp"]
 
 [ext_resource type="Theme" uid="uid://bh1lb57wrjerg" path="res://scenes/default_theme.tres" id="1_d8r44"]
+[ext_resource type="Texture2D" uid="uid://dok0ktntgic1p" path="res://Content/Sprites/Environment/background/Fix_1/Paint Layer 5.PNG" id="2_6p8qi"]
 [ext_resource type="Texture2D" uid="uid://ce0hhq0fledti" path="res://Content/Sprites/Environment/fire_platform.jpg" id="2_8mx7i"]
+[ext_resource type="Texture2D" uid="uid://c1obod4skspfd" path="res://Content/Sprites/Environment/background/Fix_1/Pilar Atas.PNG" id="2_uwgey"]
 [ext_resource type="Texture2D" uid="uid://dpakvklrd2h25" path="res://Environment/fog.jpg" id="2_v34e7"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="2_xhjg1"]
 [ext_resource type="Texture2D" uid="uid://4fy3hf7j5fqu" path="res://Environment/block_wall.jpg" id="3_1o7hb"]
@@ -14,7 +16,8 @@
 [ext_resource type="Script" path="res://scripts/controls_menu_ingame.gd" id="5_8drpu"]
 [ext_resource type="Texture2D" uid="uid://c35li8eu66f8o" path="res://Content/Sprites/Environment/background/Latar.JPEG" id="6_v4v5j"]
 [ext_resource type="AudioStream" uid="uid://bl282em5f4f7f" path="res://Content/Music/8bit_bgm..mp3" id="7_u8lyo"]
-[ext_resource type="Texture2D" uid="uid://c1vmudp62qkcy" path="res://Content/Sprites/Environment/background/Pilar Atas.JPEG" id="7_wyihm"]
+[ext_resource type="Texture2D" uid="uid://bv2u3jt332dm" path="res://Content/Sprites/Environment/background/Fix_1/Tanah.PNG" id="13_d4b0h"]
+[ext_resource type="Texture2D" uid="uid://bu53tdd6gn6s5" path="res://Content/Sprites/Environment/background/Fix_1/Pilar samping_alt_alt.PNG" id="15_81xp5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2srvn"]
 font_size = 10
@@ -84,6 +87,9 @@ shadow_offset = Vector2(3, 3)
 
 [sub_resource type="LabelSettings" id="LabelSettings_kamii"]
 font = ExtResource("3_8tgnf")
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hy1pp"]
 size = Vector2(44, 2)
@@ -99,9 +105,29 @@ size = Vector2(16, 385)
 
 [node name="Default" type="Node2D"]
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(511, 508)
+scale = Vector2(1.33333, 1)
+texture = ExtResource("6_v4v5j")
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(472, 567)
+texture = ExtResource("2_6p8qi")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(378, 507)
+texture = ExtResource("2_uwgey")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(1141, 481)
+texture = ExtResource("2_uwgey")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Menu" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -234,6 +260,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 
 [node name="PauseScreen" type="ColorRect" parent="CanvasLayer/UI/CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -647,6 +674,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="DEBUG_PLAYER" type="Label" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 0
 offset_left = 13.0
 offset_top = 383.0
@@ -660,6 +688,7 @@ Run to Jump Boost:"
 label_settings = SubResource("LabelSettings_kamii")
 
 [node name="DEBUG_MAP" type="Label" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 0
 offset_left = 13.0
 offset_top = 633.0
@@ -694,15 +723,10 @@ text = "MUSIC ENABLED"
 position = Vector2(0, -24)
 zoom = Vector2(5, 5)
 process_callback = 0
+limit_bottom = 20
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
-texture = ExtResource("6_v4v5j")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Camera2D"]
-texture = ExtResource("7_wyihm")
 
 [node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("player", "region_1", "region_2", "camera", "debug_fog", "menu_ui", "score_text", "menu_score_text", "music", "music_button", "debuglabel")]
 script = ExtResource("5_6juep")
@@ -1110,6 +1134,12 @@ region_rect = Rect2(0, 0, 16, 385)
 position = Vector2(0, -186)
 shape = SubResource("RectangleShape2D_8tv2a")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Map/region_1/Left_Wall"]
+z_index = 5
+position = Vector2(16.4174, -188.5)
+scale = Vector2(0.241005, 0.44559)
+texture = ExtResource("15_81xp5")
+
 [node name="Right_Wall" type="StaticBody2D" parent="Map/region_1"]
 position = Vector2(96, -2)
 collision_layer = 8
@@ -1125,6 +1155,12 @@ region_rect = Rect2(0, 0, 16, 385)
 [node name="Collision" type="CollisionShape2D" parent="Map/region_1/Right_Wall"]
 position = Vector2(0, -186)
 shape = SubResource("RectangleShape2D_8tv2a")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Map/region_1/Right_Wall"]
+z_index = 5
+position = Vector2(-16, -188.5)
+scale = Vector2(-0.241, -0.446)
+texture = ExtResource("15_81xp5")
 
 [node name="region_2" type="Node2D" parent="Map"]
 position = Vector2(0, -385)
@@ -1511,6 +1547,12 @@ region_rect = Rect2(0, 0, 16, 385)
 position = Vector2(0, -186)
 shape = SubResource("RectangleShape2D_8tv2a")
 
+[node name="Sprite2D3" type="Sprite2D" parent="Map/region_2/Left_Wall"]
+z_index = 5
+position = Vector2(16.4174, -192)
+scale = Vector2(0.241, -0.446)
+texture = ExtResource("15_81xp5")
+
 [node name="Right_Wall" type="StaticBody2D" parent="Map/region_2"]
 position = Vector2(96, -2)
 collision_layer = 8
@@ -1526,6 +1568,19 @@ region_rect = Rect2(0, 0, 16, 385)
 [node name="Collision" type="CollisionShape2D" parent="Map/region_2/Right_Wall"]
 position = Vector2(0, -186)
 shape = SubResource("RectangleShape2D_8tv2a")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Map/region_2/Right_Wall"]
+z_index = 5
+position = Vector2(-16, -192)
+rotation = 3.14159
+scale = Vector2(0.241, -0.446)
+texture = ExtResource("15_81xp5")
+
+[node name="StartGround" type="Sprite2D" parent="Map"]
+z_index = 7
+position = Vector2(0, -103)
+scale = Vector2(0.270833, 0.270833)
+texture = ExtResource("13_d4b0h")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera", "debuglabel") instance=ExtResource("3_u2qcl")]
 position = Vector2(0, -24)
